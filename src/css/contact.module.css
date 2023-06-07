@@ -1,0 +1,39 @@
+.contact{
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: left;
+    height: 30px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact:hover{
+    background-color: rgb(240, 240, 240);
+}
+
+.contactName{
+    font-weight: bolder;
+    font-size: large;
+}
+
+.lastMessage{
+    margin-top: 10px;
+
+}
+
+.lastMessage::after{
+    content: 'Last message';
+}
+
+.contactsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.container h1{
+    width: 100%;
+    border-bottom: 1px solid black;
+}

@@ -1,0 +1,28 @@
+*{
+    margin: 0px;
+}
+.navbar{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    background-color: #0871a8;
+    height: 60px;
+    margin-bottom: 40px;
+}
+
+.navbar h1{
+    grid-column-start: span 2;
+}
+
+.navbar p{
+    cursor: pointer;
+}
+
+.navbar p:hover{
+    color: white;
+    transition-duration: 500ms;
+}
+
+.logo a{
+    color: black;
+}

@@ -1,0 +1,39 @@
+form{
+    background-color: #353941;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+}
+
+.container{
+    display: grid;
+    place-items: center;
+    color: white;
+}
+
+form button{
+    background-color: #5a5f66;
+    border: none;
+    width: 80px;
+    height: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+form button:hover{
+    background-color: #8290a5;
+    transition-duration: 500ms;
+}
+
+form a{
+    text-decoration: none;
+    color: #5F85DB;
+}
+
+form a:hover{
+    color: white;
+    transition-duration: 500ms;
+}

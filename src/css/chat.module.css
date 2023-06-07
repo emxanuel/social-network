@@ -1,0 +1,14 @@
+.chatContainer{
+    height: 75vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
+}
+
+.input{
+    width: 98vw;
+    height: 30px;
+    font-size: medium;
+
+}
