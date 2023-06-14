@@ -1,14 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { getFriend } from '../functions/users.functions'
 import { UserData, useUserContext } from './UserContext'
 import style from '../css/chat.module.css'
-import { getChats } from '../functions/chat.functions'
+import { getChats, sendMessage } from '../functions/chat.functions'
 import Message, { message } from './Message'
 import messageStyle from '../css/messages.module.css'
 
 const Chat = () => {
     const user = useUserContext();
+    const [message, setMessage] = useState('')
     const [chats, setChat] = useState<message[]>([{
         id: 0,
         sender: 0,
@@ -44,20 +45,30 @@ const Chat = () => {
         <div>
             <nav>
                 <h1>{friend.first_name} {friend.last_name}</h1>
-                <div className={style.chatContainer}>
+                <div className={style.chatContainer} id='chatContainer'>
                     {chats? (
                         chats.map(message => (
                             <Message 
+                                key={message.id}
                                 class={message.sender === user.id? messageStyle.sended : messageStyle.received}
                                 content={message.content}
-                                date_sent={message.date_sent}
+                                date_sent={message.date_sent.substring(11, 20)}
                             />
                         ))
                     ) : (
                         <h1>no messages yet</h1>
                     )}
                 </div>
-                <input className={style.input} type="text" placeholder='write a message'/>
+                <div className={style.inputs}>
+                    <input className={style.input} type="text" placeholder='write a message' 
+                    onChange={e => setMessage(e.currentTarget.value)} />
+                    <input className={style.button} type="button" value="Send" 
+                    onClick={() => {
+                        if (params.friend){
+                            sendMessage(message, user.id, parseInt(params.friend), setChat)
+                        }
+                    }} />
+                </div>
             </nav>
         </div>
     )

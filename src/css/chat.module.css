@@ -7,8 +7,16 @@
 }
 
 .input{
-    width: 98vw;
+    width: 90vw;
     height: 30px;
     font-size: medium;
 
+}
+
+.inputs{
+    display: flex;
+}
+
+.button{
+    background-color: white;
 }

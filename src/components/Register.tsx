@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Input from './Input';
 import { Link } from 'react-router-dom';
 import { register } from '../functions/users.functions';
@@ -11,7 +11,6 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [birthdate, setBirthdate] = useState('2000-01-01');
     const [gender, setGender] = useState('');
-    const [profilePictutre, setProfilePicture] = useState(null);
     const [message, setMessage] = useState(() => {return {text: ''}});
 
     let user = {
@@ -21,7 +20,7 @@ const Register = () => {
         password: password,
         birthdate: birthdate,
         gender: gender,
-        profilePictutre: profilePictutre
+        profilePictutre: ''
     };
     
     return (

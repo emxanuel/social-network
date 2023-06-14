@@ -1,19 +1,19 @@
-import React from 'react'
-import Contacts from './Contacts'
-import Chat from './Chat'
+// import React from 'react'
+// import Contacts from './Contacts'
+// import Chat from './Chat'
 
-const App = () => {
-  const desktop = () => {
+// const App = () => {
+//   const desktop = () => {
 
-  }
+//   }
 
-  const mobile = () => {
+//   const mobile = () => {
 
-  }
+//   }
 
-  return (
-    <div>App</div>
-  )
-}
+//   return (
+//     <div>App</div>
+//   )
+// }
 
-export default App
+// export default App

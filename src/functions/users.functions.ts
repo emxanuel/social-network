@@ -1,11 +1,11 @@
-import axios from "axios"
+import { Axios } from '../backend'
 import React from 'react'
 import { UserData } from "../components/UserContext"
 
 const register = async (user: object, setMessage: React.Dispatch<React.SetStateAction<{text: string}>>) => {
     setMessage({text: 'registering...'})
         try{
-            const request = await axios.post('http://localhost/api/users', user)
+            const request = await Axios.post('/users', user)
 
             if(request.status === 200){
                 setMessage({text: 'register succesful'})
@@ -20,7 +20,7 @@ const register = async (user: object, setMessage: React.Dispatch<React.SetStateA
 }
 
 const getUserById = async (id: number, setUser: React.Dispatch<React.SetStateAction<{}>>) => {
-    const request = await axios.get(`http://localhost/api/users/${id}`);
+    const request = await Axios.get(`/users/${id}`);
     if(request.status === 200){
         setUser(request.data[0])
         localStorage.setItem("User", JSON.stringify (request.data[0]))
@@ -31,7 +31,7 @@ const login = async (user: {email: string, password: string},
     setId: React.Dispatch<React.SetStateAction<number>>, 
     setUser: React.Dispatch<React.SetStateAction<{}>>) => {
     try {
-        const request = await axios.post('http://localhost/api/login', user);
+        const request = await Axios.post('/login', user);
         if (request.status === 200){
             if (request.data[0]['count(*)'] === 1){
                 setId(request.data[0].id);
@@ -52,14 +52,14 @@ const login = async (user: {email: string, password: string},
 }
 
 const getFriends = async (id: number, setFriends: React.Dispatch<React.SetStateAction<[]>>) => {
-    const request = await axios.get("http://localhost/api/users/" + id + "/friends");
+    const request = await Axios.get(`/users/${id}/friends`);
     if(request.status === 200){
         setFriends(request.data)
     }
 }
 
 const getFriend = async (id: number, setFriend: React.Dispatch<React.SetStateAction<UserData>>) => {
-    const request = await axios.get("http://localhost/api/users/" + id);
+    const request = await Axios.get(`/users/${id}`);
     if (request.status === 200){
         setFriend(request.data[0])
     }

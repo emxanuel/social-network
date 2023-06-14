@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <BrowserRouter>
         <Routes>
           <Route path='/' Component={() => <Home Comp = {Welcome} />} />
-          <Route path='/home' Component={() => <Home Comp={Contacts} />} />
+          <Route path='/contacts' Component={() => <Home Comp={Contacts} />} />
           <Route path='/register' Component={() => <Home Comp={Register} />} />
           <Route path='/login' Component={() => <Home Comp={Login} />} />
           <Route path='/chat/:friend' Component={() => <Home Comp={Chat} />}/>

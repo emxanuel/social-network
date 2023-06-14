@@ -30,7 +30,7 @@ let userContext = createContext<UserData>({
 
 const UserProvider: React.FC<Props> = ({ children }) => {
     const storedUser = localStorage.getItem("User");
-    let [user, setUser] = storedUser !== null ? useState(JSON.parse(storedUser)) : useState({
+    let [user] = storedUser !== null ? useState(JSON.parse(storedUser)) : useState({
         id: 0,
         first_name: "",
         last_name: "",

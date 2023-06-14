@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'
 import { useUserContext } from './UserContext'
 import { useNavigate } from 'react-router-dom'
-import { getFriends } from '../functions/users.functions'
 import { Link } from 'react-router-dom'
 import styles from '../css/navbar.module.css'
 
-const Navbar = (props: any) => {
+const Navbar = () => {
     const user = useUserContext()
     const navigate = useNavigate();
     const Logged = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Input from './Input'
 import { login } from '../functions/users.functions';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,21 +16,23 @@ const Login = () => {
         password: password
     }
 
+    id.toString();
+    user
+
     return (
         <div className={styles.container}>
             <form action="" className={styles.form}>
                 <h1>Log in</h1>
                 <h2>Welcome again</h2>
-                <Input labelText='email' inputType='text' onChange={setEmail} labelClass={styles.labelEmail} />
+                <Input labelText='email' inputType='email' onChange={setEmail} labelClass={styles.labelEmail} />
                 <Input labelText='password' inputType='password' onChange={setPassword} labelClass={styles.label} />
-                <Link to='/home'>
+                <Link to='/'>
                     <button className={styles.button} onClick={async (e) => {
                         e.preventDefault();
                         if (await login(usr, setId, setUser)){
-                            navigate('/home')
+                            navigate('/')
                             window.location.reload()
                         }
-                        
                     }}>login</button>
                 </Link> 
                 <p>Don't have an account? <Link to='/register'>Create one</Link></p>

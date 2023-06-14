@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from '../css/welcome.module.css'
 import { useUserContext } from './UserContext'
@@ -7,8 +6,10 @@ const Welcome = () => {
     const user = useUserContext();
     const navigate = useNavigate();
     if (user.id !== 0){
-        return navigate('/home');
-        
+        navigate('/home');
+        return (
+            <Link to='/contacts'>My Contacts</Link>
+        )
     }else{
         return (
             <div className={styles.container}>
