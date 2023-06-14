@@ -53,4 +53,21 @@ module.exports = (app, dbService) => {
             res.status(500).json(e);
         });
     })
+
+    app.post('/api/chat/:sender/:recipient', (req, res) => {
+        const sender = req.params.sender;
+        const recipient = req.params.recipient;
+        const content = req.body.content;
+        const dateSent = req.body.dateSent
+        dbService.messages.addMessage({
+            sender: parseInt(sender),
+            recipient: parseInt(recipient),
+            content: content,
+            dateSent: dateSent
+        }).then(() => {
+            res.send("message sent")
+        }).catch(e => {
+            res.status(500).json(e)
+        })
+    })
 }
