@@ -5,14 +5,14 @@ let websocket: WebSocket;
 const wsConnect = () => {
     websocket = new WebSocket(wsServer);
 
-    websocket.onopen = function(ev){
+    websocket.onopen = function(){
         console.log('websocket open')
     }
-    websocket.onmessage = function(ev){
+    websocket.onmessage = function(){
         console.log('message received')
         
     }
-    websocket.onclose = function(ev){
+    websocket.onclose = function(){
         console.log('websocket close');
         setTimeout(() => {
             wsConnect();
