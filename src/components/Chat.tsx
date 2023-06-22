@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { getFriend } from '../functions/users.functions'
 import { UserData, useUserContext } from './UserContext'
 import style from '../css/chat.module.css'
-import { getChats, sendMessage, scrollDown } from '../functions/chat.functions'
+import { getChats, sendMessage } from '../functions/chat.functions'
 import Message, { message } from './Message'
 import messageStyle from '../css/messages.module.css'
 
