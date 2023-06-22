@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import '../public/css/index.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes, HashRouter } from 'react-router-dom'
 import Register from './components/Register.tsx'
 import Login from './components/Login.tsx'
 import Welcome from './components/Welcome.tsx'
@@ -14,7 +14,7 @@ import Chat from './components/Chat.tsx'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <UserProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path='/' Component={() => <Home Comp = {Welcome} />} />
           <Route path='/contacts' Component={() => <Home Comp={Contacts} />} />
@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path='/login' Component={() => <Home Comp={Login} />} />
           <Route path='/chat/:friend' Component={() => <Home Comp={Chat} />}/>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </UserProvider>
   </React.StrictMode>,
 )
