@@ -1,31 +1,31 @@
-import { Axios, wsServer } from "../backend";
+import { Axios, /*wsServer*/ } from "../backend";
 import { message } from "../components/Message";
 let websocket: WebSocket;
 
-const wsConnect = () => {
-    websocket = new WebSocket(wsServer);
+// const wsConnect = () => {
+//     websocket = new WebSocket(wsServer);
 
-    websocket.onopen = function(){
-        console.log('websocket open')
-    }
-    websocket.onmessage = function(){
-        console.log('message received')
+//     websocket.onopen = function(){
+//         console.log('websocket open')
+//     }
+//     websocket.onmessage = function(){
+//         console.log('message received')
         
-    }
-    websocket.onclose = function(){
-        console.log('websocket close');
-        setTimeout(() => {
-            wsConnect();
-        }, 2000)
-    }
-    websocket.onerror = function(ev){
-        console.log('error: ' + ev)
-    }
-}
+//     }
+//     websocket.onclose = function(){
+//         console.log('websocket close');
+//         setTimeout(() => {
+//             wsConnect();
+//         }, 2000)
+//     }
+//     websocket.onerror = function(ev){
+//         console.log('error: ' + ev)
+//     }
+// }
 
-function init(){
-    wsConnect()
-}
+// function init(){
+//     wsConnect()
+// }
 
 const getChats = async (sender: number, recipient: number,
     setChat: React.Dispatch<React.SetStateAction<message[]>>) => {
@@ -63,6 +63,6 @@ const scrollDown = () => {
 }
 
 
-window.addEventListener('load', init, false)
+// window.addEventListener('load', init, false)
 
 export { getChats, sendMessage, scrollDown }
