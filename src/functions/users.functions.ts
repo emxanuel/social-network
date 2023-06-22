@@ -23,6 +23,7 @@ const getUserById = async (id: number, setUser: React.Dispatch<React.SetStateAct
     const request = await Axios.get(`/users/${id}`);
     if(request.status === 200){
         setUser(request.data[0])
+        console.log(request.data[0])
         localStorage.setItem("User", JSON.stringify (request.data[0]))
     }
 }
@@ -35,7 +36,7 @@ const login = async (user: {email: string, password: string},
         if (request.status === 200){
             if (request.data[0]['count(*)'] === 1){
                 setId(request.data[0].id);
-                getUserById(request.data[0].id, setUser)
+                await getUserById(request.data[0].id, setUser)
                 return true
             }
             else{
