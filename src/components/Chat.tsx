@@ -41,8 +41,6 @@ const Chat = () => {
         }
     }, [friend])
 
-    scrollDown()
-
     return (
         <div>
             <nav>
