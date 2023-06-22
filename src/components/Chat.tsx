@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { getFriend } from '../functions/users.functions'
 import { UserData, useUserContext } from './UserContext'
 import style from '../css/chat.module.css'
-import { getChats, sendMessage } from '../functions/chat.functions'
+import { getChats, sendMessage, scrollDown } from '../functions/chat.functions'
 import Message, { message } from './Message'
 import messageStyle from '../css/messages.module.css'
 
@@ -41,6 +41,8 @@ const Chat = () => {
         }
     }, [friend])
 
+    scrollDown()
+
     return (
         <div>
             <nav>
@@ -60,12 +62,14 @@ const Chat = () => {
                     )}
                 </div>
                 <div className={style.inputs}>
-                    <input className={style.input} type="text" placeholder='write a message' 
+                    <input id='inputMessages' className={style.input} type="text" placeholder='write a message' 
                     onChange={e => setMessage(e.currentTarget.value)} />
                     <input className={style.button} type="button" value="Send" 
                     onClick={() => {
                         if (params.friend){
                             sendMessage(message, user.id, parseInt(params.friend), setChat)
+                            let inputMessages = document.getElementById('inputMessages') as HTMLInputElement;
+                            inputMessages.value = '';
                         }
                     }} />
                 </div>

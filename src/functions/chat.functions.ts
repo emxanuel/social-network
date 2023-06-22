@@ -62,7 +62,4 @@ const scrollDown = () => {
     div.scrollTop = div.scrollHeight
 }
 
-
-// window.addEventListener('load', init, false)
-
 export { getChats, sendMessage, scrollDown }
