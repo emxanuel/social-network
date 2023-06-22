@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'my-api-rest'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8048B00BCB66485BA138A68890A8B355 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7BB625CC433A43E9959C2B12C4C09DD9 }}
           package: .
