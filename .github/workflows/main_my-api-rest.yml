@@ -1,51 +1,56 @@
-name: Deploy
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - my-api-rest
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Setup Node
+      - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: '18.x'
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+          npm run test --if-present
 
-      - name: Build project
-        run: npm run build
-
-      - name: Upload production-ready build files
+      - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: production-files
-          path: ./dist
+          name: node-app
+          path: .
 
   deploy:
-    name: Deploy
-    needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact
+      - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: production-files
-          path: ./dist
+          name: node-app
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          app-name: 'my-api-rest'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7BB625CC433A43E9959C2B12C4C09DD9 }}
+          package: .
