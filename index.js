@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = 80;
+const port = process.env.port || 8080;
 const {dbService} = require('./services/db-service')
 const bodyParser = require('body-parser')
 const server = require('http').Server(app)
