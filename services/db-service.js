@@ -3,7 +3,7 @@ const dbService = () => {
         client: 'mysql2',
         connection: {
             host: process.env.dbHost,
-            port: process.env.port,
+            port: process.env.dbPort,
             user: process.env.dbUser,
             password: process.env.dbPassword,
             database: process.env.db
