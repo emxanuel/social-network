@@ -4,11 +4,12 @@ const app = express();
 const port = process.env.port || 8080;
 const {dbService} = require('./services/db-service')
 const bodyParser = require('body-parser')
-const server = require('http').Server(app)
-const WebSocketServer = require('websocket').server;
+const webSocket = require('ws');
+const http = require('http');
+const server = http.createServer(express)
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://emxanuel.github.io');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
@@ -16,20 +17,15 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 require('./routes')(app, dbService())
 
-const wsServer = new WebSocketServer({
-    httpServer: server,
-    autoAcceptConnections: false
-});
+const wss = new webSocket.Server({ server });
 
-wsServer.on('request', (request) => {
-    const connection = request.accept(null, request.origin);
-    connection.on('message', (message) => {
-        console.log('message: ' + message.utf8Data)
-        connection.sendUTF(message.utf8Data)
-    })
-
-    connection.on('close', (code, desc) => {
-        console.log('client disconnected')
+wss.on('connection', (ws) => {
+    ws.on('message', () => {
+        wss.clients.forEach((client) => {
+            if (client !== ws && client.readyState === webSocket.OPEN){
+                client.send('')
+            }
+        })
     })
 })
 
@@ -38,5 +34,5 @@ app.listen(port, () => {
 })
 
 server.listen(81, () => {
-    console.log('websocket app listen in port: ' + 81)
+    console.log('app listen in port 81')
 })
