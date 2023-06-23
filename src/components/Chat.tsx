@@ -3,13 +3,14 @@ import { useParams } from 'react-router-dom'
 import { getFriend } from '../functions/users.functions'
 import { UserData, useUserContext } from './UserContext'
 import style from '../css/chat.module.css'
-import { getChats, sendMessage } from '../functions/chat.functions'
+import { getChats, sendMessage, ws } from '../functions/chat.functions'
 import Message, { message } from './Message'
 import messageStyle from '../css/messages.module.css'
 
 const Chat = () => {
     const user = useUserContext();
     const [message, setMessage] = useState('')
+    const [canSend, setCanSend] = useState(false)
     const [chats, setChat] = useState<message[]>([{
         id: 0,
         sender: 0,
@@ -41,6 +42,12 @@ const Chat = () => {
         }
     }, [friend])
 
+    useEffect(() => {
+        ws.onmessage = () => {
+            getChats(user.id, friend.id, setChat)
+        }
+    }, [ws])
+
     return (
         <div>
             <nav>
@@ -61,13 +68,23 @@ const Chat = () => {
                 </div>
                 <div className={style.inputs}>
                     <input id='inputMessages' className={style.input} type="text" placeholder='write a message' 
-                    onChange={e => setMessage(e.currentTarget.value)} />
-                    <input className={style.button} type="button" value="Send" 
+                    onChange={e => {
+                        setMessage(e.currentTarget.value)
+                        if (e.currentTarget.value.trim().length === 0){
+                            setCanSend(false);
+                        }
+                        else{
+                            setCanSend(true)
+                        }
+                    }} />
+                    <input id='sendButton' className={style.button} type="button" value="Send"
                     onClick={() => {
-                        if (params.friend){
-                            sendMessage(message, user.id, parseInt(params.friend), setChat)
-                            let inputMessages = document.getElementById('inputMessages') as HTMLInputElement;
-                            inputMessages.value = '';
+                        if (canSend == true){
+                            if (params.friend){
+                                sendMessage(message, user.id, parseInt(params.friend), setChat)
+                                let inputMessages = document.getElementById('inputMessages') as HTMLInputElement;
+                                inputMessages.value = '';
+                            }
                         }
                     }} />
                 </div>

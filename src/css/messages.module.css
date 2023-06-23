@@ -6,6 +6,7 @@
 
 .received{
     background-color: rgb(233, 233, 233);
+    align-self: flex-start;
 }
 
 .sended{
