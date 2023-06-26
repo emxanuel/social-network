@@ -1,15 +1,16 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = process.env.port || 8080;
+const port = process.env.port || 80;
 const {dbService} = require('./services/db-service')
 const bodyParser = require('body-parser')
 const webSocket = require('ws');
 const http = require('http');
 const server = http.createServer(express)
+import ServerlessHttp from 'serverless-http';
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://emxanuel.github.io');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
@@ -29,9 +30,11 @@ wss.on('connection', (ws) => {
     })
 })
 
-app.listen(port, () => {
-    console.log("app listen in port: " + port)
-})
+export const handler = ServerlessHttp(app);
+
+// app.listen(port, () => {
+//     console.log("app listen in port: " + port)
+// })
 
 server.listen(81, () => {
     console.log('app listen in port 81')
