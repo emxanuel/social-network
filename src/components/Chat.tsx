@@ -46,7 +46,7 @@ const Chat = () => {
         ws.onmessage = () => {
             getChats(user.id, friend.id, setChat)
         }
-    }, [ws])
+    }, [])
 
     return (
         <div>
