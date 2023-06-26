@@ -42,11 +42,16 @@ const Chat = () => {
         }
     }, [friend])
 
+    // ws.addEventListener('message', () => {
+    //     console.log('1')
+    //     getChats(user.id, friend.id, setChat)
+    // })
+
     useEffect(() => {
         ws.onmessage = () => {
             getChats(user.id, friend.id, setChat)
         }
-    }, [])
+    })
 
     return (
         <div>

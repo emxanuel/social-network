@@ -31,7 +31,7 @@ const sendMessage = async (message: string, sender: number, recipient: number,
             dateSent: date.toISOString().slice(0, 19).replace('T', ' ')
         })
         if (request.status === 200){
-            await ws.send('message sent')
+            ws.send('message sent')
             await getChats(sender, recipient, setChat)
             scrollDown()
         }else{
