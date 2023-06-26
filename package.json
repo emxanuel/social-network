@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No test specified\"",
-    "start": "netlify-lambda serve src",
-    "build": "netlify-lambda build src"
+    "test": "echo \"No test specified\""
   },
   "author": "",
   "license": "ISC",

@@ -30,11 +30,9 @@ wss.on('connection', (ws) => {
     })
 })
 
-module.exports.handler = ServerlessHttp(app);
-
-// app.listen(port, () => {
-//     console.log("app listen in port: " + port)
-// })
+app.listen(port, () => {
+    console.log("app listen in port: " + port)
+})
 
 server.listen(81, () => {
     console.log('app listen in port 81')
