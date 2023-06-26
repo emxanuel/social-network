@@ -26,3 +26,19 @@
 .logo a{
     color: black;
 }
+
+.links{
+    grid-column-start: 4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px;
+}
+
+.icon{
+    cursor: pointer;
+}
+
+.icon:hover{
+    color: white;
+}
