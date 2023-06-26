@@ -6,7 +6,7 @@ const {dbService} = require('./services/db-service')
 const bodyParser = require('body-parser')
 const webSocket = require('ws');
 const http = require('http');
-const server = http.createServer(express)
+const server = http.createServer(app)
 const ServerlessHttp = require('serverless-http');
 
 const urls = [
@@ -35,10 +35,10 @@ wss.on('connection', (ws) => {
     })
 })
 
-app.listen(port, () => {
-    console.log("app listen in port: " + port)
-})
+// app.listen(port, () => {
+//     console.log("app listen in port: " + port)
+// })
 
-server.listen(443, () => {
-    console.log('app listen in port 443')
+server.listen(port, () => {
+    console.log('app listen in port: ' + port)
 })
