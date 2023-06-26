@@ -10,6 +10,7 @@ import { UserProvider } from './components/UserContext.tsx'
 import './css/general.css'
 import Contacts from './components/Contacts.tsx'
 import Chat from './components/Chat.tsx'
+import SearchUsers from './components/SearchUsers.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path='/register' Component={() => <Home Comp={Register} />} />
           <Route path='/login' Component={() => <Home Comp={Login} />} />
           <Route path='/chat/:friend' Component={() => <Home Comp={Chat} />}/>
+          <Route path='/search' Component={() => <SearchUsers />} />
         </Routes>
       </HashRouter>
     </UserProvider>

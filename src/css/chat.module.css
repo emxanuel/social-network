@@ -20,3 +20,18 @@
 .button{
     background-color: white;
 }
+
+#chatHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+
+.friendName{
+    margin-left: 18vw;
+}
+
+i{
+    cursor: pointer;
+}

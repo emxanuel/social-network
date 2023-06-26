@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { getFriend } from '../functions/users.functions'
 import { UserData, useUserContext } from './UserContext'
 import style from '../css/chat.module.css'
@@ -9,6 +9,7 @@ import messageStyle from '../css/messages.module.css'
 
 const Chat = () => {
     const user = useUserContext();
+    const navigate = useNavigate();
     const [message, setMessage] = useState('')
     const [canSend, setCanSend] = useState(false)
     const [chats, setChat] = useState<message[]>([{
@@ -56,7 +57,10 @@ const Chat = () => {
     return (
         <div>
             <nav>
-                <h1>{friend.first_name} {friend.last_name}</h1>
+                <div id={style.chatHeader}>
+                    <i className="fa-solid fa-arrow-left" onClick={() => navigate('/contacts')} />
+                    <h1 className={style.friendName}>{friend.first_name} {friend.last_name}</h1>
+                </div>
                 <div className={style.chatContainer} id='chatContainer'>
                     {chats? (
                         chats.map(message => (
