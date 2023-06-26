@@ -18,7 +18,7 @@ const getChats = async (sender: number, recipient: number,
     setChat: React.Dispatch<React.SetStateAction<message[]>>) => {
         const request = await Axios.get(`/chat/${sender}/${recipient}`);
         if (request.status === 200){
-            setChat(request.data)
+            await setChat(request.data)
         }
         scrollDown();
 }
@@ -31,8 +31,8 @@ const sendMessage = async (message: string, sender: number, recipient: number,
             dateSent: date.toISOString().slice(0, 19).replace('T', ' ')
         })
         if (request.status === 200){
-            getChats(sender, recipient, setChat)
-            ws.send('message sent')
+            await getChats(sender, recipient, setChat)
+            await ws.send('message sent')
             scrollDown()
         }else{
             console.log(request.statusText)
