@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = process.env.port || 80;
-const {dbService} = require('../functions/services/db-service')
+const {dbService} = require('./functions/services/db-service')
 const bodyParser = require('body-parser')
 const webSocket = require('ws');
 const http = require('http');
@@ -16,7 +16,7 @@ app.use((req, res, next) => {
     next();
 });
 app.use(bodyParser.json())
-require('../functions/routes')(app, dbService())
+require('./functions/routes')(app, dbService())
 
 const wss = new webSocket.Server({ server });
 
