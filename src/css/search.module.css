@@ -1,0 +1,42 @@
+.header{
+    display: flex;
+    align-items: center;
+}
+
+.arrowLeft{
+    font-size: 25px;
+}
+
+.arrowLeft:hover{
+    color: #0871a8;
+    transition-duration: 500ms;
+}
+
+.title{
+    margin-left: 40px;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+}
+
+.search input{
+
+    width: 90vw;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+}
+
+.result{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.result:hover{
+    background-color: #1e73a71a;
+}
+
+.result h1{
+    font-size: 25px;
+}

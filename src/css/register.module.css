@@ -1,4 +1,4 @@
-form{
+.form{
     background-color: #353941;
     padding: 30px;
     display: flex;
@@ -14,7 +14,7 @@ form{
     color: white;
 }
 
-form button{
+.form button{
     background-color: #5a5f66;
     border: none;
     width: 80px;
@@ -23,17 +23,17 @@ form button{
     cursor: pointer;
 }
 
-form button:hover{
+.form button:hover{
     background-color: #8290a5;
     transition-duration: 500ms;
 }
 
-form a{
+.form a{
     text-decoration: none;
     color: #5F85DB;
 }
 
-form a:hover{
+.form a:hover{
     color: white;
     transition-duration: 500ms;
 }

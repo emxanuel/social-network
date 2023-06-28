@@ -23,7 +23,6 @@ const getUserById = async (id: number, setUser: React.Dispatch<React.SetStateAct
     const request = await Axios.get(`/users/${id}`);
     if(request.status === 200){
         setUser(request.data[0])
-        console.log(request.data[0])
         localStorage.setItem("User", JSON.stringify (request.data[0]))
     }
 }
@@ -66,5 +65,15 @@ const getFriend = async (id: number, setFriend: React.Dispatch<React.SetStateAct
     }
 }
 
+const searchUsers = async (name: string, id: number, setResults: React.Dispatch<React.SetStateAction<UserData[]>>) => {
+    if (name.trim().length <= 0){
+        name = '`'
+    }
+    const request = await Axios.get(`/users/search/${id}/${name}`);
+    if (request.status === 200){
+        setResults(request.data)
+    }
+}
 
-export { register, login, getFriends, getFriend }
+
+export { register, login, getFriends, getFriend, searchUsers }

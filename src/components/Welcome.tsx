@@ -6,7 +6,7 @@ const Welcome = () => {
     const user = useUserContext();
     const navigate = useNavigate();
     if (user.id !== 0){
-        navigate('/home');
+        navigate('/');
         return (
             <Link to='/contacts'>My Contacts</Link>
         )

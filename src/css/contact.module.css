@@ -24,10 +24,6 @@
 
 }
 
-.lastMessage::after{
-    content: 'Last message';
-}
-
 .contactsContainer{
     display: flex;
     flex-direction: column;

@@ -26,7 +26,7 @@ const Register = () => {
     return (
     <div className={styles.container}>
         
-        <form>
+        <form className={styles.form}>
             <h1>Register</h1>
             <h2>Let's start the experience</h2>
             <Input labelText = 'Name' inputType = 'text' onChange = {setFirstName} />

@@ -1,5 +1,7 @@
+import React from "react";
 import { Axios, wsServer } from "../backend";
 import { message } from "../components/Message";
+import styles from '../css/chat.module.css'
 export let ws: WebSocket;
 
 const init = () => {
@@ -39,11 +41,22 @@ const sendMessage = async (message: string, sender: number, recipient: number,
         }
 }
 
+const getLastMessage = async (sender: number, recipient: number, setLastMessage: 
+    React.Dispatch<React.SetStateAction<message>>) => {
+        
+        const request = await Axios.get(`/chat/${sender}/${recipient}/lastmessage`)
+        if (request.status === 200){
+            setLastMessage(request.data)
+        }else{
+            console.log(request.statusText);
+        }
+}
+
 const scrollDown = () => {
-    const div = document.getElementById('chatContainer') as HTMLElement;
+    const div = document.getElementById(styles.chatContainer) as HTMLElement;
     div.scrollTop = div.scrollHeight
 }
 
 window.addEventListener('load', init, false)
 
-export { getChats, sendMessage, scrollDown }
+export { getChats, sendMessage, scrollDown, getLastMessage }

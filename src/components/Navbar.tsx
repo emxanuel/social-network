@@ -28,13 +28,13 @@ const Navbar = () => {
                 <div className={styles.links}>
                     <p>{user.first_name}</p>
                     {/* <img src={user.profilePicture} alt="" /> */}
-                    <p onClick={() => {
+                    <p onClick={async () => {
                         localStorage.clear()
+                        await navigate('/')
                         window.location.reload()
                     }}>Logout</p>
                     <i className={`${styles.icon} fa-solid fa-bars`} onClick={async () => {
                         await setToggle(!toggle)
-                        console.log(!toggle)
                         toggleNavbar()
                     }}/>
                 </div>

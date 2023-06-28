@@ -25,7 +25,7 @@ let userContext = createContext<UserData>({
     birthdate: "",
     gender: "",
     profile_picture: "",
-    is_active: false,
+    is_active: false
 });
 
 const UserProvider: React.FC<Props> = ({ children }) => {
