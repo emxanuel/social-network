@@ -42,6 +42,15 @@ module.exports = (app, dbService) => {
             res.status(500).json(e);
         })
     })
+    app.get('/api/users/search/:id/:name', (req, res) => {
+        const name = req.params.name;
+        const id = req.params.id;
+        dbService.users.searchUsers(name, id).then(result => {
+            res.json(result);
+        }).catch(e => {
+            res.status(500).json(e);
+        })
+    })
 
     //chat routes
     app.get('/api/chat/:id/:friend', (req, res) => {
@@ -68,6 +77,16 @@ module.exports = (app, dbService) => {
             res.send("message sent")
         }).catch(e => {
             res.status(500).json(e)
+        })
+    })
+
+    app.get('/api/chat/:sender/:recipient/lastmessage', (req, res) => {
+        const sender = req.params.sender;
+        const recipient = req.params.recipient;
+        dbService.messages.getLastMessage(sender, recipient).then(result => {
+            res.json(result);
+        }).catch(e => {
+            res.status(500).json(e);
         })
     })
 }

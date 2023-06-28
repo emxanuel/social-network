@@ -59,6 +59,11 @@ const dbService = () => {
         },
         getFriends: (id) => {
             return knex(tables.users).whereNot({id: id}).select()
+        },
+        searchUsers: (name, id) => {
+            return knex(tables.users)
+            .whereRaw(`CONCAT(first_name, ' ', last_name) LIKE '${name}%'`)
+            .whereNot({id: id}).select()
         }
     }
 
@@ -81,6 +86,17 @@ const dbService = () => {
                 sender: recipient,
                 recipient: sender
             }).orderBy('date_sent').select();
+        },
+
+        getLastMessage: (sender, recipient) => {
+            return knex(tables.message).where({
+                sender: sender,
+                recipient: recipient
+            })
+            .orWhere({
+                sender: recipient,
+                recipient: sender
+            }).orderBy('date_sent', 'desc').select().first()
         }
     }
 
