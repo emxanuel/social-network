@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import styles from '../css/search.module.css'
 import { UserData, useUserContext } from './UserContext'
 import { searchUsers } from '../functions/users.functions'
