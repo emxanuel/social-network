@@ -54,7 +54,7 @@ const login = async (user: {email: string, password: string},
 const getFriends = async (id: number, setFriends: React.Dispatch<React.SetStateAction<[]>>) => {
     const request = await Axios.get(`/users/${id}/friends`);
     if(request.status === 200){
-        setFriends(request.data)
+        setFriends(request.data[0][0])
     }
 }
 
