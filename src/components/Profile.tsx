@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { UserData, useUserContext } from './UserContext'
-import { getFriend, verifyFriend } from '../functions/users.functions';
+import { getFriend, sendFriendRequest, verifyFriend } from '../functions/users.functions';
 import { useParams, Link } from 'react-router-dom';
 import styles from '../css/profile.module.css'
 
 const Profile = () => {
     const params = useParams()
     const user = useUserContext();
+    const [message, setMessage] = useState('Send friend request');
     const [isFriend, setIsFriend] = useState(false);
     const [friend, setFriend] = useState<UserData>({
         id: 0,
@@ -41,7 +42,9 @@ const Profile = () => {
                     {isFriend? (
                         <Link to={`/chat/${friend.id}`}>Lets chat with {friend.first_name}</Link>
                     ) : (
-                        <button>Send friend request</button>
+                        <button onClick={async () => {
+                            await sendFriendRequest(user.id, friend.id, setMessage)
+                        }}>{message}</button>
                     )}
                 </div>
             ) : (

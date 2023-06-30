@@ -86,5 +86,26 @@ const verifyFriend = async (user1: number, user2: number) => {
     return verify;
 }
 
+const sendFriendRequest = async (requester: number, requested: number, 
+    setMessage: React.Dispatch<React.SetStateAction<string>>) => {
+    const request = await Axios.post('/users/request', {
+        requester: requester,
+        requested: requested,
+        requestDate: new Date().toISOString().slice(0, 19).replace('T', ' ')
+    })
 
-export { register, login, getFriends, getFriend, searchUsers, verifyFriend }
+    if (request.status === 200){
+        setMessage('request sended')
+    }
+}
+
+
+export { 
+    register,
+    login,
+    getFriends,
+    getFriend,
+    searchUsers,
+    verifyFriend,
+    sendFriendRequest 
+}
