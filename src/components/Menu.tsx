@@ -8,6 +8,7 @@ const Menu = () => {
             <div className={style.link}>
                 <i className="fa-solid fa-magnifying-glass" />
                 <Link to='/search'>Search friends</Link>
+                <Link to='/requests'></Link>
             </div>
         </div>
     )

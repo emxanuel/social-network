@@ -75,5 +75,16 @@ const searchUsers = async (name: string, id: number, setResults: React.Dispatch<
     }
 }
 
+const verifyFriend = async (user1: number, user2: number) => {
+    let verify = false;
+    const request = await Axios.get(`/users/verify/${user1}/${user2}`);
+    if (request.status === 200){
+        if (request.data[0]['count(*)'] === 1){
+            verify = true;
+        }
+    }
+    return verify;
+}
 
-export { register, login, getFriends, getFriend, searchUsers }
+
+export { register, login, getFriends, getFriend, searchUsers, verifyFriend }

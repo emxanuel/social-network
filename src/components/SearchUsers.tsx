@@ -35,7 +35,7 @@ const SearchUsers = () => {
             <div className={styles.results}>
                 {results? (
                     results.map((result: UserData) => (
-                        <div key={result.id} className={styles.result} onClick={() => {navigate(`/chat/${result.id}`)}}>
+                        <div key={result.id} className={styles.result} onClick={() => {navigate(`/profile/${result.id}`)}}>
                             <h1 className={styles.name}>{result.first_name} {result.last_name}</h1>
                         </div>
                     ))

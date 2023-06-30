@@ -55,7 +55,7 @@ const Chat = () => {
     })
 
     return (
-        <div>
+        <div className={style.container}>
             <nav>
                 <div id={style.chatHeader}>
                     <i className="fa-solid fa-arrow-left" onClick={() => navigate('/contacts')} />
