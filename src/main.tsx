@@ -12,6 +12,7 @@ import Contacts from './components/Contacts.tsx'
 import Chat from './components/Chat.tsx'
 import SearchUsers from './components/SearchUsers.tsx'
 import Profile from './components/Profile.tsx'
+import Requests from './components/Requests.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path='/chat/:friend' Component={() => <Home Comp={Chat} />}/>
           <Route path='/search' Component={() => <SearchUsers />} />
           <Route path='/profile/:id' Component={() => <Home Comp={Profile} />} />
+          <Route path='/requests' Component={() => <Home Comp={Requests}/>}/>
         </Routes>
       </HashRouter>
     </UserProvider>

@@ -4,6 +4,7 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "typeRoots": ["./environment.d.ts",  "./node_modules/@types"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -19,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "environment.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

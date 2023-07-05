@@ -99,6 +99,17 @@ const sendFriendRequest = async (requester: number, requested: number,
     }
 }
 
+const verifyRequest = async (user1: number, user2: number) => {
+    let state = -1;
+    const request = await Axios.get(`/users/request/${user1}/${user2}`);
+
+    if(request.status === 200){
+        request.data[0][0][0].state !== null? state = request.data[0][0][0].state : state = state
+    }
+    
+    return state
+}
+
 
 export { 
     register,
@@ -107,5 +118,6 @@ export {
     getFriend,
     searchUsers,
     verifyFriend,
-    sendFriendRequest 
+    sendFriendRequest,
+    verifyRequest
 }
