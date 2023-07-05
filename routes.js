@@ -51,6 +51,32 @@ module.exports = (app, dbService) => {
             res.status(500).json(e);
         })
     })
+    app.get('/api/users/verify/:user1/:user2', (req, res) => {
+        const user1 = req.params.user1;
+        const user2 = req.params.user2;
+        dbService.users.verifyFriend(user1, user2).then(result => {
+            res.json(result);
+        }).catch(e => {
+            res.status(500).json(e)
+        })
+    })
+    app.post('/api/users/request/', (req, res) => {
+        const data = req.body;
+        dbService.users.sendFriendRequest(data).then(() => {
+            res.send('request sended');
+        }).catch(e => {
+            res.status(500).json(e)
+        })
+    })
+    app.get('/api/users/request/:user1/:user2', (req, res) => {
+        const user1 = req.params.user1;
+        const user2 = req.params.user2;
+        dbService.users.verifyRequest(user1, user2).then((result) => {
+            res.json(result);
+        }).catch(e => {
+            res.status(500).json(e);
+        })
+    })
 
     //chat routes
     app.get('/api/chat/:id/:friend', (req, res) => {

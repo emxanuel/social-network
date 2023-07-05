@@ -14,7 +14,9 @@ const dbService = () => {
         users: 'users',
         stories: 'stories',
         storyViews: 'story_views',
-        message: 'messages'
+        message: 'messages',
+        friends: 'friends',
+        friendsRequests: 'friends_requests'
     }
 
     const users = {
@@ -58,16 +60,30 @@ const dbService = () => {
             })
         },
         getFriends: (id) => {
-            return knex(tables.users).whereNot({id: id}).select()
+            return knex.raw('call sp_get_friends(?)', [id])
         },
         searchUsers: (name, id) => {
             return knex(tables.users)
             .whereRaw(`CONCAT(first_name, ' ', last_name) LIKE '${name}%'`)
             .whereNot({id: id}).select()
+        },
+        verifyFriend: (user1, user2) => {
+            return knex(tables.friends).where({user1: user1, user2: user2})
+            .orWhere({user1: user2, user2: user1}).count()
+        },
+        sendFriendRequest: ({requester, requested, requestDate}) => {
+            return knex(tables.friendsRequests).insert({
+                requester: requester,
+                requested: requested,
+                request_date: requestDate
+            })
+        },
+        verifyRequest: (user1, user2) => {
+            return knex.raw('call sp_verify_requests(?, ?)', [user1, user2])
         }
     }
 
-    const messages = {
+    const messages = {  
         addMessage: ({sender, recipient, content, dateSent}) => {
             return knex(tables.message).insert({
                 sender: sender,
