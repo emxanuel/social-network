@@ -1,6 +1,7 @@
 *{
     margin: 0px;
 }
+
 .navbar{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -8,6 +9,8 @@
     background-color: #0871a8;
     height: 60px;
     margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
 }
 
 .navbar h1{
@@ -33,10 +36,16 @@
     align-items: center;
     gap: 8px;
     padding: 5px;
+    position: relative;
+    z-index: 1;
 }
 
 .icon{
     cursor: pointer;
+}
+
+.iconContainer{
+    z-index: 1;
 }
 
 .icon:hover{

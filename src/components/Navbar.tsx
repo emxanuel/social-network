@@ -2,6 +2,7 @@ import { useUserContext } from './UserContext'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import styles from '../css/navbar.module.css'
+import menuStyles from '../css/menu.module.css'
 import Menu from './Menu'
 import { useState } from 'react'
 
@@ -12,17 +13,19 @@ const Navbar = () => {
 
     const toggleNavbar = () => {
         let menu = document.getElementById('menu') as HTMLElement;
-        if (toggle){
-            menu.style.display = 'flex'
-        }
-        else{
-            menu.style.display = 'none'
-        }
+        toggle? menu.classList.add(menuStyles.active) : menu.classList.remove(menuStyles.active)
+
+        // if (toggle){
+        //     menu.style.display = 'flex'
+        // }
+        // else{
+        //     menu.style.display = 'none'
+        // }
     }
     const Logged = () => {
         return (
             <nav className = {styles.navbar}>
-                <div>
+                <div className={styles.iconContainer}>  
                     <h1 className={styles.logo}><Link to='/'>SN</Link></h1>
                 </div>
                 <div className={styles.links}>
