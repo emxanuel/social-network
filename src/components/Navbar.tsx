@@ -12,7 +12,7 @@ const Navbar = () => {
     const [toggle, setToggle] = useState(true);
 
     const toggleNavbar = () => {
-        let menu = document.getElementById('menu') as HTMLElement;
+        const menu = document.getElementById('menu') as HTMLElement;
         toggle? menu.classList.add(menuStyles.active) : menu.classList.remove(menuStyles.active)
 
         // if (toggle){

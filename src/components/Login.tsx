@@ -11,7 +11,7 @@ const Login = () => {
     const [id, setId] = useState(0);
     const [user, setUser] = useState({})
 
-    let usr = {
+    const usr = {
         email: email,
         password: password
     }

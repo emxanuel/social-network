@@ -4,6 +4,7 @@ import { UserData } from "../components/UserContext"
 
 const register = async (user: object, setMessage: React.Dispatch<React.SetStateAction<{text: string}>>) => {
     setMessage({text: 'registering...'})
+        let text: string
         try{
             const request = await Axios.post('/users', user)
 
@@ -13,13 +14,13 @@ const register = async (user: object, setMessage: React.Dispatch<React.SetStateA
         }
         catch (e: any){
             if(e.response.data.code === 'ER_DUP_ENTRY'){
-                var text: string = 'there is already an account with that email'
+                text = 'there is already an account with that email'
                 setMessage({text: text});
             }
         }
 }
 
-const getUserById = async (id: number, setUser: React.Dispatch<React.SetStateAction<{}>>) => {
+const getUserById = async (id: number, setUser: React.Dispatch<React.SetStateAction<object>>) => {
     const request = await Axios.get(`/users/${id}`);
     if(request.status === 200){
         setUser(request.data[0])
@@ -29,7 +30,7 @@ const getUserById = async (id: number, setUser: React.Dispatch<React.SetStateAct
 
 const login = async (user: {email: string, password: string}, 
     setId: React.Dispatch<React.SetStateAction<number>>, 
-    setUser: React.Dispatch<React.SetStateAction<{}>>) => {
+    setUser: React.Dispatch<React.SetStateAction<object>>) => {
     try {
         const request = await Axios.post('/login', user);
         if (request.status === 200){
@@ -104,10 +105,22 @@ const verifyRequest = async (user1: number, user2: number) => {
     const request = await Axios.get(`/users/request/${user1}/${user2}`);
 
     if(request.status === 200){
-        request.data[0][0][0].state !== null? state = request.data[0][0][0].state : state = state
+        request.data[0][0][0].state !== null? state = request.data[0][0][0].state : state = -1
     }
     
     return state
+}
+
+const answerRequest = async (requester: number, requested: number, answer: string) => {
+    const request = await Axios.post(`/users/request/${requester}/${requester}`, {
+        requester: requester,
+        requested: requested,
+        answer: answer
+    });
+
+    if (request.status === 200){
+        console.log('request answered succesfully')
+    }
 }
 
 
@@ -119,5 +132,6 @@ export {
     searchUsers,
     verifyFriend,
     sendFriendRequest,
-    verifyRequest
+    verifyRequest,
+    answerRequest
 }

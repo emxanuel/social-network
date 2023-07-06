@@ -13,7 +13,7 @@ const Register = () => {
     const [gender, setGender] = useState('');
     const [message, setMessage] = useState(() => {return {text: ''}});
 
-    let user = {
+    const user = {
         firstName: firstName,
         lastName: lastName,
         email: email,

@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import '../public/css/index.css'
 import { Route, Routes, HashRouter } from 'react-router-dom'
 import Register from './components/Register.tsx'
 import Login from './components/Login.tsx'

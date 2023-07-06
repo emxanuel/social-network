@@ -28,7 +28,7 @@ const Contacts = () => {
 
     useEffect(() => {
         getFriends(user.id, setFriends)
-    }, [])
+    }, [user.id])
 
     if (user.id === 0){
         navigate('/')
