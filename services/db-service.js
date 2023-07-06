@@ -80,6 +80,9 @@ const dbService = () => {
         },
         verifyRequest: (user1, user2) => {
             return knex.raw('call sp_verify_requests(?, ?)', [user1, user2])
+        },
+        answerRequest: ({requester, requested, answer}) => {
+            return knex.raw('call sp_answerRequest(?, ?, ?)', [requester, requested, answer])
         }
     }
 

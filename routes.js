@@ -77,6 +77,14 @@ module.exports = (app, dbService) => {
             res.status(500).json(e);
         })
     })
+    app.post('/api/users/request/:user1/:user2', (req, res) => {
+        data = req.body
+        dbService.users.answerRequest(data).then(() => {
+            res.json('request answered')
+        }).catch(e => {
+            res.status(500).json(e)
+        })
+    })
 
     //chat routes
     app.get('/api/chat/:id/:friend', (req, res) => {
