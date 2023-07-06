@@ -60,6 +60,14 @@ module.exports = (app, dbService) => {
             res.status(500).json(e)
         })
     })
+    app.get('/api/users/:id/requests', (req, res) => {
+        const id = req.params.id;
+        dbService.users.getRequests(id).then(result => {
+            res.json(result);
+        }).catch(e => {
+            res.status(500).json(e)
+        })
+    })
     app.post('/api/users/request/', (req, res) => {
         const data = req.body;
         dbService.users.sendFriendRequest(data).then(() => {

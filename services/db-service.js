@@ -83,6 +83,9 @@ const dbService = () => {
         },
         answerRequest: ({requester, requested, answer}) => {
             return knex.raw('call sp_answerRequest(?, ?, ?)', [requester, requested, answer])
+        },
+        getRequests: (id) => {
+            return knex.raw('call getRequests(?)', [id])
         }
     }
 
