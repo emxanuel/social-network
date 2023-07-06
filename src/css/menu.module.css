@@ -25,7 +25,7 @@
 .active{
     display: flex;
     animation: showAnimation;
-    animation-duration: 2s;
+    animation-duration: 500ms;
     animation-fill-mode: forwards;
 }
 

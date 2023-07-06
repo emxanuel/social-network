@@ -1,5 +1,5 @@
 import { Axios } from '../backend'
-import React from 'react'
+import React, { SetStateAction } from 'react'
 import { UserData } from "../components/UserContext"
 
 const register = async (user: object, setMessage: React.Dispatch<React.SetStateAction<{text: string}>>) => {
@@ -88,7 +88,7 @@ const verifyFriend = async (user1: number, user2: number) => {
 }
 
 const sendFriendRequest = async (requester: number, requested: number, 
-    setMessage: React.Dispatch<React.SetStateAction<string>>) => {
+    setRequestStatus: React.Dispatch<React.SetStateAction<number>>) => {
     const request = await Axios.post('/users/request', {
         requester: requester,
         requested: requested,
@@ -96,7 +96,7 @@ const sendFriendRequest = async (requester: number, requested: number,
     })
 
     if (request.status === 200){
-        setMessage('request sended')
+        setRequestStatus(0)
     }
 }
 
@@ -111,7 +111,10 @@ const verifyRequest = async (user1: number, user2: number) => {
     return state
 }
 
-const answerRequest = async (requester: number, requested: number, answer: string) => {
+const answerRequest = async (requester: number, requested: number, answer: string,
+    setRequestStatus?: React.Dispatch<React.SetStateAction<number>>,
+    setIsFriend?: React.Dispatch<React.SetStateAction<boolean>>,
+    setRequests?: React.Dispatch<SetStateAction<UserData[]>>) => {
     const request = await Axios.post(`/users/request/${requester}/${requester}`, {
         requester: requester,
         requested: requested,
@@ -119,7 +122,44 @@ const answerRequest = async (requester: number, requested: number, answer: strin
     });
 
     if (request.status === 200){
-        console.log('request answered succesfully')
+        if (answer ===  'accepted'){
+            if (setIsFriend){
+                setIsFriend(true);
+            }
+            else if(setRequests){
+                getRequests(requested, setRequests)
+            }
+        }
+        else if(answer === 'declined'){
+            if (setRequestStatus){
+                setRequestStatus(-1)
+            }
+            else if(setRequests){
+                getRequests(requested, setRequests)
+            }
+        }
+    }
+}
+
+const getRequests = async (id: number, setRequests: React.Dispatch<SetStateAction<UserData[]>>) => {
+    const request = await Axios.get(`/users/${id}/requests`);
+    if (request.status === 200){
+        if(request.data[0][0].length == 0){
+            setRequests([{
+                id: 0,
+                first_name: "",
+                last_name: "",
+                email: "",
+                password: "",
+                birthdate: "",
+                gender: "",
+                profile_picture: "",
+                is_active: false,
+            }])
+        }
+        else{
+            setRequests(request.data[0][0])
+        }
     }
 }
 
@@ -133,5 +173,6 @@ export {
     verifyFriend,
     sendFriendRequest,
     verifyRequest,
-    answerRequest
+    answerRequest,
+    getRequests
 }

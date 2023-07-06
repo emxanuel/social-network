@@ -1,0 +1,28 @@
+.request{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    border-bottom: 1px solid #0000004b;
+    padding-bottom: 10px;
+}
+
+.request p{
+    font-size: medium
+}
+
+.buttons{
+    display: flex;
+    column-gap: 10px;
+}
+
+.buttons button {
+
+    background-color: #ffffff;
+    border: 1px solid #0000004b;
+}
+
+.title{
+    font-size: xx-large;
+    margin-bottom: 0.7rem;
+    border-bottom: 3px solid #0000004b;
+}

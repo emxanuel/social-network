@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { UserData, useUserContext } from './UserContext'
-import { getFriend, sendFriendRequest, verifyFriend, verifyRequest } from '../functions/users.functions';
+import { answerRequest, getFriend, sendFriendRequest, verifyFriend, verifyRequest } from '../functions/users.functions';
 import { useParams, Link } from 'react-router-dom';
 import styles from '../css/profile.module.css'
 
@@ -47,21 +47,31 @@ const Profile = () => {
             {friend.id !== 0? (
                 <div>
                     <h1>{friend.first_name} {friend.last_name}</h1>
-                    {isFriend? (
-                        <Link to={`/chat/${friend.id}`}>Lets chat with {friend.first_name}</Link>
-                    ) : requestStatus == 0? (
-                        <button>
-                            request sended
-                        </button>
-                    ) : requestStatus == 1? (
-                        <button>
-                            accept request
-                        </button>
-                    ) : (
-                        <button onClick={async () => {
-                            await sendFriendRequest(user.id, friend.id, setMessage)
-                        }}>{message}</button>
-                    )}
+                    <div className={styles.header}>
+                        {isFriend? (
+                            <Link to={`/chat/${friend.id}`}>Lets chat with {friend.first_name}</Link>
+                        ) : requestStatus == 0? (
+                            <button>
+                                request sended
+                            </button>
+                        ) : requestStatus == 1? (
+                            <div className={styles.answerContainer}>
+                                <p className={styles.answerText}>answer request</p>
+                                <div className={styles.divIcons}>
+                                    <button className={styles.iconButton} onClick={() => {
+                                        answerRequest(friend.id, user.id, 'accepted', setRequestStatus, setIsFriend)
+                                    }}><i className='fa-solid fa-check' /></button> 
+                                    <button className={styles.iconButton} onClick={() => {
+                                        answerRequest(friend.id, user.id, 'declined', setRequestStatus, setIsFriend)
+                                    }} ><i className='fa-solid fa-x' /></button>
+                                </div>
+                            </div>
+                        ) : (
+                            <button onClick={async () => {
+                                await sendFriendRequest(user.id, friend.id, setRequestStatus)
+                            }}>{message}</button>
+                        )}
+                    </div>
                 </div>
             ) : (
                 <h1>User not found</h1>

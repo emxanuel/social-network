@@ -1,10 +1,13 @@
 .header{
-    display: flex;
-    align-items: center;
+    position: relative;
 }
 
 .arrowLeft{
     font-size: 25px;
+    order: 1;
+    position: absolute;
+    line-height: -50%;
+    transform: translateY(50%);
 }
 
 .arrowLeft:hover{
@@ -13,16 +16,17 @@
 }
 
 .title{
-    margin-left: 40px;
+    text-align: center;
 }
 
 .search{
     display: flex;
     justify-content: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #00000071;
 }
 
 .search input{
-
     width: 90vw;
     background-color: rgb(255, 255, 255);
     border: 1px solid black;

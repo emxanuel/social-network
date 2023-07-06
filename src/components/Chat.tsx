@@ -41,7 +41,7 @@ const Chat = () => {
         if (friend){
             getChats(user.id, friend.id, setChat)
         }
-    }, [friend])
+    }, [friend, user.id])
 
     // ws.addEventListener('message', () => {
     //     console.log('1')
@@ -91,7 +91,7 @@ const Chat = () => {
                         if (canSend == true){
                             if (params.friend){
                                 sendMessage(message, user.id, parseInt(params.friend), setChat)
-                                let inputMessages = document.getElementById('inputMessages') as HTMLInputElement;
+                                const inputMessages = document.getElementById('inputMessages') as HTMLInputElement;
                                 inputMessages.value = '';
                             }
                         }

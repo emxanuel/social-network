@@ -22,16 +22,17 @@
 }
 
 #chatHeader{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
+    position: relative;
+    border-bottom: 3px solid #000000ab;
 }
 
 .friendName{
-    margin-left: 18vw;
+    margin: auto;
+    cursor: pointer;
 }
 
-i{
+#chatHeader i{
     cursor: pointer;
+    position: absolute;
+    font-size: 25px;
 }
