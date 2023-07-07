@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UserData, useUserContext } from './UserContext'
 import { answerRequest, getFriend, sendFriendRequest, verifyFriend, verifyRequest } from '../functions/users.functions';
 import { useParams, Link } from 'react-router-dom';
@@ -8,7 +8,6 @@ const Profile = () => {
     const params = useParams()
     const user = useUserContext();
     const [requestStatus, setRequestStatus] = useState(-1)
-    const [message, setMessage] = useState('Send friend request');
     const [isFriend, setIsFriend] = useState(false);
     const [friend, setFriend] = useState<UserData>({
         id: 0,
@@ -69,7 +68,7 @@ const Profile = () => {
                         ) : (
                             <button onClick={async () => {
                                 await sendFriendRequest(user.id, friend.id, setRequestStatus)
-                            }}>{message}</button>
+                            }}>send friend request</button>
                         )}
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { answerRequest, getRequests } from '../functions/users.functions'
 import { UserData, useUserContext } from './UserContext'
 import style from '../css/requests.module.css'

@@ -1,7 +1,6 @@
 import React from "react";
 import { Axios, wsServer } from "../backend";
 import { message } from "../components/Message";
-import styles from '../css/chat.module.css'
 export let ws: WebSocket;
 
 const init = () => {
