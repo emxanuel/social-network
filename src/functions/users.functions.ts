@@ -2,15 +2,31 @@ import { Axios } from '../backend'
 import React, { SetStateAction } from 'react'
 import { UserData } from "../components/UserContext"
 
-const register = async (user: object, setMessage: React.Dispatch<React.SetStateAction<{text: string}>>) => {
+const register = async (user: {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    birthdate: string,
+    gender: string,
+    profilePictutre: string
+}, setMessage: React.Dispatch<React.SetStateAction<{text: string}>>) => {
     setMessage({text: 'registering...'})
+
+        const emailRegex = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+$/
         let text: string
         try{
-            const request = await Axios.post('/users', user)
+            if (emailRegex.test(user.email)){
+                const request = await Axios.post('/users', user)
 
-            if(request.status === 200){
-                setMessage({text: 'register succesful'})
+                if(request.status === 200){
+                    setMessage({text: 'register succesful, go to login'})
+                }
             }
+            else{
+                setMessage({text: 'please insert a valid email'})
+            }
+            
         }
         catch (e: any){
             if(e.response.data.code === 'ER_DUP_ENTRY'){

@@ -31,7 +31,7 @@ const Register = () => {
             <h2>Let's start the experience</h2>
             <Input labelText = 'Name' inputType = 'text' onChange = {setFirstName} />
             <Input labelText = 'Last Name' inputType = 'text' onChange = {setLastName} />
-            <Input labelText = 'Email' inputType = 'text' onChange = {setEmail} />
+            <Input labelText = 'Email' inputType = 'email' onChange = {setEmail} />
             <Input labelText = 'Password' inputType = 'password' onChange = {setPassword} />
             <Input labelText = 'Birthdate' inputType = 'date' onChange = {setBirthdate} defaultValue = '2000-01-01'/>
             <Input labelText = 'Gender' inputType = 'text' onChange = {setGender} />
