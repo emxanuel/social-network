@@ -9,13 +9,8 @@ const http = require('http');
 const server = http.createServer(app)
 const ServerlessHttp = require('serverless-http');
 
-const urls = [
-    'http://localhost:3000',
-    'https://emxanuel.github.io'
-]
-
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', urls[1]);
+    res.setHeader('Access-Control-Allow-Origin', process.env.site);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
