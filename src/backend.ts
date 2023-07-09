@@ -1,16 +1,7 @@
 import axios from "axios";
-const url = {
-    http: {
-        api: 'http://localhost',
-        websocket: 'ws://localhost'
-    },
-    https: {
-        api: 'https://my-api-rest.onrender.com',
-        websocket: 'wss://my-api-rest.onrender.com'
-    }
-}
-const base = url.https.api
-export const wsServer = url.https.websocket
+
+const base = import.meta.env.VITE_SERVER
+export const wsServer = import.meta.env.VITE_WSSERVER
 export const server = `${base}/api`
 export const Axios = axios.create({
     baseURL: server
