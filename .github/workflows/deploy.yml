@@ -36,6 +36,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/app'
+      with:
+        VITE_SERVER: ${{ secrets.VITE_SERVER }}
+        VITE_WSSERVER: ${{ secrets.VITE_WSSERVER }}
 
     steps:
       - name: Download artifact
