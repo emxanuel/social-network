@@ -16,7 +16,7 @@ export type UserData = {
     is_active: boolean,
 };
 
-let userContext = createContext<UserData>({
+const userContext = createContext<UserData>({
     id: 0,
     first_name: "",
     last_name: "",
@@ -36,7 +36,7 @@ const UserProvider: React.FC<Props> = ({ children }) => {
         last_name: "",
         email: "",
         password: "",
-        birthdate: "",
+        birthdate: "",  
         gender: "",
         profile_picture: "",
         is_active: false,

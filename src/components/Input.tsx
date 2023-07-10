@@ -1,8 +1,8 @@
-
+import styles from '../css/input.module.css'
 
 const Input = (props: any) => {
   return (
-    <div>
+    <div className={styles.container}>
         <label htmlFor="" className={props.labelClass}>{props.labelText}</label>
         <input type={props.inputType} 
         onChange={e => {props.onChange(e.target.value)}} 

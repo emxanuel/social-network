@@ -3,9 +3,11 @@ import { UserData, useUserContext } from './UserContext'
 import { answerRequest, getFriend, sendFriendRequest, verifyFriend, verifyRequest } from '../functions/users.functions';
 import { useParams, Link } from 'react-router-dom';
 import styles from '../css/profile.module.css'
+import { useThemeContext } from './Theme';
 
 const Profile = () => {
     const params = useParams()
+    const theme = useThemeContext()
     const user = useUserContext();
     const [requestStatus, setRequestStatus] = useState(-1)
     const [isFriend, setIsFriend] = useState(false);
@@ -42,7 +44,7 @@ const Profile = () => {
     }, [user.id, friend.id])
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${theme === 'dark'? styles.dark : styles.light}`}>
             {friend.id !== 0? (
                 <div>
                     <h1>{friend.first_name} {friend.last_name}</h1>

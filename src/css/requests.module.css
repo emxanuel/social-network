@@ -16,13 +16,44 @@
 }
 
 .buttons button {
-
     background-color: #ffffff;
     border: 1px solid #0000004b;
+    cursor: pointer;
 }
 
 .title{
     font-size: xx-large;
     margin-bottom: 0.7rem;
     border-bottom: 3px solid #0000004b;
+}
+
+.text{
+    text-align: center;
+}
+
+.dark {
+    background-color: black;
+}
+
+.dark .title{
+    color: white;
+    border-bottom-color: white;
+}
+
+.dark .request{
+    border-bottom-color: white;
+}
+
+.dark .request p{
+    color: white;
+}
+
+.dark .text{
+    color: white;
+}
+
+.dark .buttons button{
+    background-color: black;
+    border-color: #111;
+    color: white;
 }

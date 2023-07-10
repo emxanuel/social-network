@@ -5,12 +5,14 @@
     flex-direction: column;
     row-gap: 20px;
     align-items: center;
+    border-radius: 10px;
 }
 
 .container{
     display: grid;
     place-items: center;
     color: white;
+    height: calc(100vh - 60px);
 }
 
 .form button{
@@ -48,4 +50,18 @@
 .form input{
     color: black;
     font-weight: bolder;
+}
+
+
+.dark .form {
+    background-color: black;
+    box-shadow: 1px 1px 20px rgba(151, 151, 151, 0.432);
+}
+
+.dark .form input{
+    border: 1px solid #111;
+}
+
+.dark .form button{
+    background-color: rgb(68, 68, 68);
 }

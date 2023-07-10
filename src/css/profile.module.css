@@ -36,3 +36,20 @@
     justify-self: flex-end;
     align-self: flex-end;
 }
+
+.dark{
+    background-color: black;
+}
+
+.dark .answerText{
+    color: white;
+}
+
+.dark .iconButton{
+    color: white;
+    border-color: white;
+}
+
+.dark h1 {
+    color: white;
+}

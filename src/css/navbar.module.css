@@ -8,7 +8,6 @@
     place-items: center;
     background-color: #0871a8;
     height: 60px;
-    margin-bottom: 40px;
     position: relative;
     z-index: 10;
 }
@@ -40,6 +39,16 @@
     z-index: 1;
 }
 
+.links a{
+    color: black;
+    display: none;
+}
+
+.links a:hover{
+    color: white;
+    transition-duration: 500ms;
+}
+
 .icon{
     cursor: pointer;
 }
@@ -50,4 +59,76 @@
 
 .icon:hover{
     color: white;
+}
+
+.changeButton{
+    display: none;
+}
+
+#lightIcon{
+    display: none;
+}
+
+#darkIcon{
+    display: block;
+}
+
+.dark{
+    color: white;
+}
+
+.dark .links a{
+    color: white;
+}
+
+.dark .logo a{
+    color: white;
+}
+
+.dark .logo a:hover{
+    color: black;
+    transition-duration: 500ms;
+}
+
+.dark .links a:hover{
+    color: black;
+    transition-duration: 500ms;
+}
+
+.dark #darkIcon{
+    display: none;
+}
+
+.dark #lightIcon{
+    display: block;
+}
+
+@media (min-width: 801px){
+    .navbar{
+        display: flex;
+        justify-content: space-around;
+    }
+    .links a{
+        display: flex;
+    }
+    .links{
+        display: flex;
+        column-gap: 2em;
+    }
+    .bars{
+        display: none;
+    }
+    .changeButton{
+        background-color: #0871a8;
+        border: none;
+        color: white;
+        width: 1em;
+        font-size: 1.3em;
+        display: block;
+        color: black;
+        cursor: pointer;
+    }
+    .dark .changeButton{
+        color: white;
+    }
 }

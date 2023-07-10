@@ -8,6 +8,7 @@
     padding-bottom: 60px;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .contact:hover{
@@ -27,9 +28,78 @@
 .contactsContainer{
     display: flex;
     flex-direction: column;
+    min-height: 91.3vh;
+}
+
+.contactsContainer h1{
+    text-align: center;
 }
 
 .container h1{
     width: 100%;
     border-bottom: 1px solid black;
+}
+
+.chatSpace{
+    display: none;
+}
+
+.dark{
+    background-color: black;
+}
+
+.dark .contact{
+    background-color: black;
+    color: white;
+    border-bottom-color: white;
+}
+
+.dark .contact:hover{
+    background-color: rgba(17, 17, 17, 0.575);
+}
+
+.dark h1{
+    border-bottom-color: white;
+}
+
+.dark .contactsContainer{
+    background-color: black;
+}
+
+.dark .contactsContainer h1{
+    color: white;
+}
+
+@media (min-width: 801px) {
+    .container{
+        display: flex;
+    }
+    .chatSpace{
+        display: flex;
+        flex-direction: column;
+        row-gap: 1em;
+        width: 70vw;
+        height: 80vh;
+        justify-content: center;
+        align-items: center;
+        border-left: 2px solid black;
+        border-left-style: outset;
+        padding: 2.46em 0px;
+    }
+    .chatSpace p{
+        font-size: 1.2em;
+        font-weight: bold;
+        
+    }
+    .chatSpace i{
+        color: #0871a8;
+        font-size: 6em;
+        filter: drop-shadow(2px 2px 10px black);
+    }
+    .contactsContainer{
+        width: 30vw;
+    }
+    .dark .chatSpace p{
+        color: white;
+    }
 }

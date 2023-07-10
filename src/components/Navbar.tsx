@@ -5,9 +5,11 @@ import styles from '../css/navbar.module.css'
 import menuStyles from '../css/menu.module.css'
 import Menu from './Menu'
 import { useState } from 'react'
+import { useThemeContext } from './Theme'
 
 const Navbar = () => {
     const user = useUserContext()
+    const theme = useThemeContext()
     const navigate = useNavigate();
     const [toggle, setToggle] = useState(true);
 
@@ -24,22 +26,34 @@ const Navbar = () => {
     }
     const Logged = () => {
         return (
-            <nav className = {styles.navbar}>
+            <nav className = {`${styles.navbar} ${theme === 'dark'? styles.dark : styles.light}`}>
                 <div className={styles.iconContainer}>  
                     <h1 className={styles.logo}><Link to='/'>SN</Link></h1>
                 </div>
                 <div className={styles.links}>
+                    <Link to='/search'>
+                        Search friends
+                    </Link>
+                    <Link to='/requests'>
+                        Friends requests
+                    </Link>
+                    <Link to='/' onClick={() => {
+                            localStorage.removeItem('User')
+                            window.location.reload()
+                    }}>Logout</Link>
                     <p>{user.first_name}</p>
                     {/* <img src={user.profilePicture} alt="" /> */}
-                    <p onClick={async () => {
-                        localStorage.clear()
-                        await navigate('/')
-                        window.location.reload()
-                    }}>Logout</p>
-                    <i className={`${styles.icon} fa-solid fa-bars`} onClick={async () => {
+                    <i className={`${styles.icon} ${styles.bars} fa-solid fa-bars`} onClick={async () => {
                         await setToggle(!toggle)
                         toggleNavbar()
                     }}/>
+                    <button className={styles.changeButton} onClick={() => {
+                        theme === 'dark' ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark')
+                        window.location.reload();
+                    }}>
+                        <i id = {styles.lightIcon} className={`fa-regular fa-sun`} />
+                        <i id = {styles.darkIcon} className={`fa-regular fa-moon`}/>
+                    </button>
                 </div>
                 <Menu />
             </nav>
@@ -47,7 +61,7 @@ const Navbar = () => {
     }
     const Unlogged = () => {
         return(
-            <nav className={styles.navbar}>
+            <nav className={`${styles.navbar} ${theme === 'dark'? styles.dark : styles.light}`}>
                 <h1 className={styles.logo}><Link to='/'>SN</Link></h1>
                 <p onClick={() => {
                     navigate('/login')

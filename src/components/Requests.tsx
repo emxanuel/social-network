@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import { answerRequest, getRequests } from '../functions/users.functions'
 import { UserData, useUserContext } from './UserContext'
 import style from '../css/requests.module.css'
+import { useThemeContext } from './Theme'
 
 const Requests = () => {
     const user = useUserContext();
+    const theme = useThemeContext()
     const [requests, setRequests] = useState<UserData[]>([{
         id: 0,
         first_name: "",
@@ -20,7 +22,7 @@ const Requests = () => {
         getRequests(user.id, setRequests)
     }, [user.id])
     return (
-        <div className={style.container}>
+        <div className={`${style.container} ${theme === 'dark'? style.dark : style.light}`}>
             <h1 className={style.title}>friends requests</h1>
             {requests[0].id !== 0? (
                 requests.map((request => (
@@ -37,7 +39,7 @@ const Requests = () => {
                     </div>
                 )))
             ) : (
-                <h1>no requests</h1>
+                <h2 className={style.text}>no requests</h2>
             )}
         </div>
     )

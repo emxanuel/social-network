@@ -6,8 +6,11 @@ import style from '../css/chat.module.css'
 import { getChats, sendMessage, ws } from '../functions/chat.functions'
 import Message, { message } from './Message'
 import messageStyle from '../css/messages.module.css'
+import Contacts from './Contacts'
+import { useThemeContext } from './Theme'
 
 const Chat = () => {
+    const theme = useThemeContext();
     const user = useUserContext();
     const navigate = useNavigate();
     const [message, setMessage] = useState('')
@@ -54,8 +57,13 @@ const Chat = () => {
         }
     })
 
+
+
     return (
-        <div className={style.container}>
+        <div className={`${style.container} ${theme === 'dark'? style.dark : style.light}`}>
+            <div className={style.contacts}>
+                <Contacts />
+            </div>
             <nav>
                 <div id={style.chatHeader}>
                     <i className="fa-solid fa-arrow-left" onClick={() => navigate('/contacts')} />
@@ -66,7 +74,7 @@ const Chat = () => {
                         chats.map(message => (
                             <Message 
                                 key={message.id}
-                                class={message.sender === user.id? messageStyle.sended : messageStyle.received}
+                                class={message.sender === user.id? style.sended : style.received}
                                 content={message.content}
                                 date_sent={message.date_sent.substring(11, 20)}
                             />
@@ -76,9 +84,10 @@ const Chat = () => {
                     )}
                 </div>
                 <div className={style.inputs}>
-                    <input id='inputMessages' className={style.input} type="text" placeholder='write a message' 
+                    <textarea autoFocus id='inputMessages' className={style.input} placeholder='write a message' 
                     onChange={e => {
                         setMessage(e.currentTarget.value)
+                        console.log(message)
                         if (e.currentTarget.value.trim().length === 0){
                             setCanSend(false);
                         }

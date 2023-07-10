@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.container{
+    height: 100vh;
+}
+
 .arrowLeft{
     font-size: 25px;
     order: 1;
@@ -33,7 +37,6 @@
 }
 
 .result{
-    border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
 
@@ -43,4 +46,39 @@
 
 .result h1{
     font-size: 25px;
+}
+
+.dark{
+    background-color: black;
+}
+
+.dark .title{
+    color: white;
+}
+
+.dark .search input{
+    background-color: black;
+    border: 1px solid #333;
+}
+
+.dark .arrowLeft{
+    color: white;
+}
+
+.dark .result{
+    border-bottom-color: white;
+    border-top-color: white;
+    color: white;
+}
+
+.dark input{
+    color: white;
+}   
+
+.dark .search{
+    border-bottom: 1px solid white;
+}
+
+.dark .arrowLeft:hover{
+    color: #0871a8;
 }

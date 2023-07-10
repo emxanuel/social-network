@@ -3,8 +3,10 @@ import Input from './Input';
 import { Link } from 'react-router-dom';
 import { register } from '../functions/users.functions';
 import styles from '../css/register.module.css'
+import { useThemeContext } from './Theme';
 
 const Register = () => {
+    const theme = useThemeContext()
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -24,7 +26,7 @@ const Register = () => {
     };
     
     return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${theme === 'dark'? styles.dark : styles.light}`}>
         
         <form className={styles.form}>
             <h1>Register</h1>

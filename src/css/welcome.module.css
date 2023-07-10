@@ -23,6 +23,7 @@ a:hover{
     justify-content: center;
     align-items: center;
     row-gap: 30px;
+    height: calc(100vh - 150px);
 }
 
 .text{
@@ -34,4 +35,59 @@ a:hover{
 
 .text h2{
     color: #4f5668;
+}
+
+.loggedContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 91.3vh;
+}
+
+.loggedContainer a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.589));
+}
+
+.loggedContainer a i{
+    font-size: 6em;
+    color: black;
+}
+
+.loggedContainer a i:hover, .loggedContainer a p:hover{
+    color: #2258d8;
+    transition-duration: 500ms;
+    filter: drop-shadow(1px 1px 10px #2259d891);
+}
+
+.loggedContainer a p{
+    color: black;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.dark{
+    background-color: black;
+}
+
+.dark .text h1, .dark .text h2{
+    color: white;
+}
+
+.dark a{
+    color: rgb(125, 155, 199);
+}
+
+.dark a p, .dark a i{
+    color: white;
+}
+
+@media (max-width: 800px){
+    .loggedContainer{
+        flex-direction: column;
+    }
 }

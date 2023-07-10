@@ -17,7 +17,7 @@
     color: white;
 }
 
-.container a:hover{
+.container a:hover, .changeButton:hover{
     font-size: large;
     transition-duration: 500ms;
 }
@@ -44,8 +44,47 @@
     flex-direction: column;
     align-items: center;
     row-gap: 10px;
+    font-size: 1em;
+    justify-content: space-between;
+}
+
+.links a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1em;
+    width: 100vw;
 }
 
 .icon {
     color: black;
+}
+
+#lightIcon{
+    display: none;
+}
+
+#darkIcon{
+    display: block;
+}
+.dark .icon{
+    color: white;
+}
+
+.dark #lightIcon{
+    display: block;
+}
+.dark #darkIcon{
+    display: none;
+}
+.dark .changeButton{
+    color: white;
+}
+
+@media (min-width: 1025px) {
+    .container{
+        display: none;
+    }
+    #menu{display: none;}
 }

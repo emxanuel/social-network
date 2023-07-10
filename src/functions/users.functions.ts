@@ -46,9 +46,11 @@ const getUserById = async (id: number, setUser: React.Dispatch<React.SetStateAct
 
 const login = async (user: {email: string, password: string}, 
     setId: React.Dispatch<React.SetStateAction<number>>, 
-    setUser: React.Dispatch<React.SetStateAction<object>>) => {
+    setUser: React.Dispatch<React.SetStateAction<object>>,
+    setMessage: React.Dispatch<React.SetStateAction<string>>) => {
     try {
         const request = await Axios.post('/login', user);
+        setMessage('logging in...')
         if (request.status === 200){
             if (request.data[0]['count(*)'] === 1){
                 setId(request.data[0].id);
@@ -56,6 +58,7 @@ const login = async (user: {email: string, password: string},
                 return true
             }
             else{
+                setMessage('email or password incorrect')
                 return false;
             }
         }

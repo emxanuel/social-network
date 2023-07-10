@@ -4,13 +4,21 @@
     display: flex;
     flex-direction: column;
     row-gap: 2em;
+    scroll-snap-type:none;
+}
+
+.chatContainer::-webkit-scrollbar{
+    background-color: transparent;
 }
 
 .input{
     width: 90vw;
-    height: 30px;
+    min-height: 30px;
     font-size: medium;
+}
 
+.input::-webkit-scrollbar{
+    color: transparent;
 }
 
 .inputs{
@@ -35,4 +43,70 @@
     cursor: pointer;
     position: absolute;
     font-size: 25px;
+}
+
+.contacts{
+    display: none;
+}
+
+textarea{
+    resize: none;
+}
+
+
+.received{
+    background-color: rgb(233, 233, 233);
+    align-self: flex-start;
+}
+
+.sended{
+    align-self: flex-end;
+    background-color: #075580;
+}
+
+@media (min-width: 801px) {
+    .container{
+        display: flex;
+        flex-direction: row;
+    }
+    .container nav{
+        width: 68.5vw;
+        border-left: 2px solid black;
+        border-left-style: outset;
+    }
+    .contacts{
+        width: 30vw;
+        display: block;
+    }
+    #chatHeader h1{
+        font-size: 2em;
+    }
+    #chatHeader{
+        border-bottom: 1px solid black;
+    }
+    #chatHeader i{
+        display: none;
+    }
+}
+
+.dark{
+    background-color: black;
+    color: white;
+}
+
+
+.dark .received{
+    background-color: #111;
+}
+
+.dark textarea{
+    background-color: #000;
+    border: 1px solid #111;
+    color: white;
+}
+
+.dark .button{
+    background-color: #000;
+    color: white;
+    border: 1px solid #111;
 }

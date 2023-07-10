@@ -3,9 +3,11 @@ import styles from '../css/search.module.css'
 import { UserData, useUserContext } from './UserContext'
 import { searchUsers } from '../functions/users.functions'
 import { useNavigate } from 'react-router-dom'
+import { useThemeContext } from './Theme'
 
 const SearchUsers = () => {
     const navigate = useNavigate();
+    const theme = useThemeContext()
     const user = useUserContext();
     const [results, setResults] = useState<UserData[]>([{
         id: 0,
@@ -20,7 +22,7 @@ const SearchUsers = () => {
     }])
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${theme === 'dark'? styles.dark : styles.light}`}>
             <div className={styles.header}>
                 <i className={`fa-solid fa-arrow-left ${styles.arrowLeft} `} 
                 onClick={() => window.history.back()} />
