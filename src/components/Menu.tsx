@@ -20,7 +20,7 @@ const Menu = () => {
                         theme === 'dark' ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark')
                         window.location.reload();
                     }}>
-                        <i id = {style.lightIcon} className={`fa-regular fa-sun`} />
+                        <i id = {style.lightIcon} className={`fa-regular fa-sun ${style.icon}`} />
                         <i id = {style.darkIcon} className={`fa-regular fa-moon`}/>
                         <p>Change theme</p>
                 </Link>
