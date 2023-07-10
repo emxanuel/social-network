@@ -5,7 +5,6 @@ import { UserData, useUserContext } from './UserContext'
 import style from '../css/chat.module.css'
 import { getChats, sendMessage, ws } from '../functions/chat.functions'
 import Message, { message } from './Message'
-import messageStyle from '../css/messages.module.css'
 import Contacts from './Contacts'
 import { useThemeContext } from './Theme'
 

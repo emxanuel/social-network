@@ -3,7 +3,6 @@ import { getFriends } from '../functions/users.functions';
 import { UserData, useUserContext } from './UserContext';
 import styles from '../css/contact.module.css'
 import { useNavigate } from 'react-router-dom';
-import Chat from './Chat';
 import { useThemeContext } from './Theme';
 // import { message } from './Message';
 // import { getLastMessage } from '../functions/chat.functions';
