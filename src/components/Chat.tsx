@@ -75,7 +75,7 @@ const Chat = () => {
                                 key={message.id}
                                 class={message.sender === user.id? style.sended : style.received}
                                 content={message.content}
-                                date_sent={message.date_sent.substring(11, 20)}
+                                date_sent={`${new Date(message.date_sent).toLocaleTimeString()}`}
                             />
                         ))
                     ) : (

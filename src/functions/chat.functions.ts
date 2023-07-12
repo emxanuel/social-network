@@ -26,11 +26,14 @@ const getChats = async (sender: number, recipient: number,
 
 const sendMessage = async (message: string, sender: number, recipient: number,
     setChat: React.Dispatch<React.SetStateAction<message[]>>) => {
-        const date = new Date();
-        console.log(date)
+        const date = new Date().toLocaleString('en-US', {
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        });
+        console.log(new Date(date))
         const request = await Axios.post(`/chat/${sender}/${recipient}`, {
             content: message,
-            dateSent: date.toISOString().slice(0, 19).replace('T', ' ')
+            dateSent: date,
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
         })
         if (request.status === 200){
             ws.send('message sent')
