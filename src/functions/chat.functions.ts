@@ -27,6 +27,7 @@ const getChats = async (sender: number, recipient: number,
 const sendMessage = async (message: string, sender: number, recipient: number,
     setChat: React.Dispatch<React.SetStateAction<message[]>>) => {
         const date = new Date();
+        console.log(date)
         const request = await Axios.post(`/chat/${sender}/${recipient}`, {
             content: message,
             dateSent: date.toISOString().slice(0, 19).replace('T', ' ')
