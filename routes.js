@@ -1,3 +1,4 @@
+const moment = require('moment')
 module.exports = (app, dbService) => {
     app.get('/api', (req, res) => {
         res.send('my social network api')
@@ -109,7 +110,11 @@ module.exports = (app, dbService) => {
         const sender = req.params.sender;
         const recipient = req.params.recipient;
         const content = req.body.content;
-        const dateSent = req.body.dateSent
+        let dateSent = req.body.dateSent;
+        const timeZone = req.body.timeZone
+        console.log(moment(dateSent, 'M/D/YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm:ss'), dateSent)
+        dateSent = moment(dateSent, 'M/D/YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm:ss')
+        
         dbService.messages.addMessage({
             sender: parseInt(sender),
             recipient: parseInt(recipient),
