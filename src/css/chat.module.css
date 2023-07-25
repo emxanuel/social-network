@@ -61,7 +61,7 @@ textarea{
 
 .sended{
     align-self: flex-end;
-    background-color: #075580;
+    background-color: #0871a8;
 }
 
 @media (min-width: 801px) {
@@ -109,4 +109,8 @@ textarea{
     background-color: #000;
     color: white;
     border: 1px solid #111;
+}
+
+.dark .sended{
+    background-color: #075580;
 }

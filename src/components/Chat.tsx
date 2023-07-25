@@ -101,6 +101,7 @@ const Chat = () => {
                                 sendMessage(message, user.id, parseInt(params.friend), setChat)
                                 const inputMessages = document.getElementById('inputMessages') as HTMLInputElement;
                                 inputMessages.value = '';
+                                
                             }
                         }
                     }} />

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../css/contact.module.css'
 import { UserData, useUserContext } from './UserContext';
-import { getLastMessage } from '../functions/chat.functions';
+import { getLastMessage, ws } from '../functions/chat.functions';
 import { message } from './Message';
 
 const Contact = (props: { friend: UserData }) => {
@@ -20,6 +20,12 @@ const Contact = (props: { friend: UserData }) => {
         getLastMessage(user.id, props.friend.id, setLastMessage)
     }, [user.id, props.friend])
 
+    useEffect(() => {
+        ws.onmessage = () => {
+            getLastMessage(user.id, props.friend.id, setLastMessage)
+        }
+    })
+
     return (
         <div key={props.friend.id}>
             <button className={styles.contact}
@@ -27,7 +33,7 @@ const Contact = (props: { friend: UserData }) => {
                 <p className={styles.contactName}>{props.friend.first_name} {props.friend.last_name}</p>
                 <p className={styles.lastMessage}>{lastMessage.content} <span>{
                     new Date(lastMessage.date_sent.slice(0, 19).replace('T', ' ')).getDay() === new Date().getDay() ? (
-                        lastMessage.date_sent.slice(11, 16)
+                        new Date(lastMessage.date_sent).toLocaleTimeString()
                     ) : (
                         new Date(lastMessage.date_sent.slice(0, 19).replace('T', ' ')).toLocaleDateString()
                     )
