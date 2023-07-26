@@ -111,7 +111,7 @@ module.exports = (app, dbService) => {
         const recipient = req.params.recipient;
         const content = req.body.content;
         let dateSent = req.body.dateSent;
-        const timeZone = req.body.timeZone
+        const timezone = req.body.timezone
         console.log(moment(dateSent, 'M/D/YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm:ss'), dateSent)
         dateSent = moment(dateSent, 'M/D/YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm:ss')
         
@@ -119,7 +119,8 @@ module.exports = (app, dbService) => {
             sender: parseInt(sender),
             recipient: parseInt(recipient),
             content: content,
-            dateSent: dateSent
+            dateSent: dateSent,
+            timezone: timezone
         }).then(() => {
             res.send("message sent")
         }).catch(e => {

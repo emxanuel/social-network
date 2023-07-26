@@ -90,12 +90,14 @@ const dbService = () => {
     }
 
     const messages = {  
-        addMessage: ({sender, recipient, content, dateSent}) => {
+        addMessage: ({sender, recipient, content, dateSent, timezone}) => {
+            console.log(timezone)
             return knex(tables.message).insert({
                 sender: sender,
                 recipient: recipient,
                 content: content,
-                date_sent: dateSent
+                date_sent: dateSent,
+                timezone: timezone
             })
         },
 
