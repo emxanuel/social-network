@@ -9,6 +9,7 @@ import Contacts from './Contacts'
 import { useThemeContext } from './Theme'
 
 const Chat = () => {
+    const regex = /^(\d{2}:\d{2})(:\d{2})? (AM|PM)$/;
     const theme = useThemeContext();
     const user = useUserContext();
     const navigate = useNavigate();
@@ -75,7 +76,7 @@ const Chat = () => {
                                 key={message.id}
                                 class={message.sender === user.id? style.sended : style.received}
                                 content={message.content}
-                                date_sent={`${new Date(message.date_sent).toLocaleTimeString()}`}
+                                date_sent={`${new Date(message.date_sent).toLocaleTimeString('en-us').replace(regex, '$1 $3')}`}
                             />
                         ))
                     ) : (

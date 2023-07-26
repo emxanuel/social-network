@@ -6,6 +6,7 @@ import { getLastMessage, ws } from '../functions/chat.functions';
 import { message } from './Message';
 
 const Contact = (props: { friend: UserData }) => {
+    const regex = /^(\d{2}:\d{2})(:\d{2})? (AM|PM)$/;
     const navigate = useNavigate();
     const user = useUserContext();
     const [lastMessage, setLastMessage] = useState<message>({
@@ -32,10 +33,10 @@ const Contact = (props: { friend: UserData }) => {
                 onClick={async () => { await navigate('/chat/' + props.friend.id) }}>
                 <p className={styles.contactName}>{props.friend.first_name} {props.friend.last_name}</p>
                 <p className={styles.lastMessage}>{lastMessage.content} <span>{
-                    new Date(lastMessage.date_sent.slice(0, 19).replace('T', ' ')).getDay() === new Date().getDay() ? (
-                        new Date(lastMessage.date_sent).toLocaleTimeString()
+                    new Date(lastMessage.date_sent).getDay() === new Date().getDay() ? (
+                        new Date(lastMessage.date_sent).toLocaleTimeString('en-us').replace(regex, '$1 $3')
                     ) : (
-                        new Date(lastMessage.date_sent.slice(0, 19).replace('T', ' ')).toLocaleDateString()
+                        new Date(lastMessage.date_sent).toLocaleDateString()
                     )
                 }</span></p>
             </button>

@@ -32,7 +32,8 @@ const sendMessage = async (message: string, sender: number, recipient: number,
         console.log(new Date(date))
         const request = await Axios.post(`/chat/${sender}/${recipient}`, {
             content: message,
-            dateSent: date
+            dateSent: date,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
         })
         if (request.status === 200){
             ws.send('message sent')
