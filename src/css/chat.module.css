@@ -1,5 +1,5 @@
 .chatContainer{
-    height: 75vh;
+    height: calc(100vh - 70px - 3rem - 2rem);
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
 
 .input{
     width: 90vw;
-    min-height: 30px;
+    height: 2rem;
     font-size: medium;
 }
 
@@ -32,6 +32,7 @@
 #chatHeader{
     position: relative;
     border-bottom: 3px solid #000000ab;
+    height: 3rem;
 }
 
 .friendName{
@@ -69,7 +70,7 @@ textarea{
         display: flex;
         flex-direction: row;
     }
-    .container nav{
+    .secondDiv{
         width: 68.5vw;
         border-left: 2px solid black;
         border-left-style: outset;

@@ -16,23 +16,20 @@ const Contact = (props: { friend: UserData }) => {
         content: '',
         date_sent: ''
     })
-
     useEffect(() => {
         getLastMessage(user.id, props.friend.id, setLastMessage)
     }, [user.id, props.friend])
 
-    useEffect(() => {
-        ws.onmessage = () => {
-            getLastMessage(user.id, props.friend.id, setLastMessage)
-        }
-    })
+    ws.onmessage = () => {
+        getLastMessage(user.id, props.friend.id, setLastMessage)
+    }
 
     return (
         <div key={props.friend.id}>
             <button className={styles.contact}
                 onClick={async () => { await navigate('/chat/' + props.friend.id) }}>
                 <p className={styles.contactName}>{props.friend.first_name} {props.friend.last_name}</p>
-                <p className={styles.lastMessage}>{lastMessage.content} <span>{
+                <p className={styles.lastMessage}>{lastMessage.sender === user.id ? `You: ${lastMessage.content}` : lastMessage.content} <span>{
                     new Date(lastMessage.date_sent).getDay() === new Date().getDay() ? (
                         new Date(lastMessage.date_sent).toLocaleTimeString('en-us').replace(regex, '$1 $3')
                     ) : (

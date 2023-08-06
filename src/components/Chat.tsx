@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { getFriend } from '../functions/users.functions'
 import { UserData, useUserContext } from './UserContext'
 import style from '../css/chat.module.css'
-import { getChats, sendMessage, ws } from '../functions/chat.functions'
+import { getChats, scrollDown, sendMessage, ws } from '../functions/chat.functions'
 import Message, { message } from './Message'
 import Contacts from './Contacts'
 import { useThemeContext } from './Theme'
@@ -46,25 +46,18 @@ const Chat = () => {
         }
     }, [friend, user.id])
 
-    // ws.addEventListener('message', () => {
-    //     console.log('1')
-    //     getChats(user.id, friend.id, setChat)
-    // })
-
     useEffect(() => {
         ws.onmessage = () => {
             getChats(user.id, friend.id, setChat)
         }
     })
 
-
-
     return (
         <div className={`${style.container} ${theme === 'dark'? style.dark : style.light}`}>
             <div className={style.contacts}>
                 <Contacts />
             </div>
-            <nav>
+            <div className={style.secondDiv}>
                 <div id={style.chatHeader}>
                     <i className="fa-solid fa-arrow-left" onClick={() => navigate('/contacts')} />
                     <h1 className={style.friendName}>{friend.first_name} {friend.last_name}</h1>
@@ -84,10 +77,9 @@ const Chat = () => {
                     )}
                 </div>
                 <div className={style.inputs}>
-                    <textarea autoFocus id='inputMessages' className={style.input} placeholder='write a message' 
+                    <textarea id='inputMessages' className={style.input} placeholder='write a message' 
                     onChange={e => {
                         setMessage(e.currentTarget.value)
-                        console.log(message)
                         if (e.currentTarget.value.trim().length === 0){
                             setCanSend(false);
                         }
@@ -96,18 +88,18 @@ const Chat = () => {
                         }
                     }} />
                     <input id='sendButton' className={style.button} type="button" value="Send"
-                    onClick={() => {
+                    onClick={async () => {
                         if (canSend == true){
                             if (params.friend){
                                 sendMessage(message, user.id, parseInt(params.friend), setChat)
                                 const inputMessages = document.getElementById('inputMessages') as HTMLInputElement;
                                 inputMessages.value = '';
-                                
                             }
+                            scrollDown()
                         }
                     }} />
                 </div>
-            </nav>
+            </div>
         </div>
     )
 }

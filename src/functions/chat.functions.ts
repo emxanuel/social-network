@@ -57,7 +57,9 @@ const getLastMessage = async (sender: number, recipient: number, setLastMessage:
 
 const scrollDown = () => {
     const div = document.getElementById('chatContainer') as HTMLElement;
-    div.scrollTop = div.scrollHeight
+    setTimeout(() => {
+        div.scrollTop = div.scrollHeight
+    }, 300)
 }
 
 window.addEventListener('load', init, false)

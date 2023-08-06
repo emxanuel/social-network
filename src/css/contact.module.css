@@ -1,6 +1,7 @@
 .contact{
     background-color: white;
     border: none;
+    border-top: 1px solid black;
     border-bottom: 1px solid black;
     width: 100%;
     text-align: left;
@@ -39,7 +40,8 @@
 
 .container h1{
     width: 100%;
-    border-bottom: 1px solid black;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .chatSpace{
@@ -53,7 +55,7 @@
 .dark .contact{
     background-color: black;
     color: white;
-    border-bottom-color: white;
+    border-color: white;
 }
 
 .dark .contact:hover{
