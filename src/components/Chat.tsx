@@ -7,6 +7,7 @@ import { getChats, scrollDown, sendMessage, ws } from '../functions/chat.functio
 import Message, { message } from './Message'
 import Contacts from './Contacts'
 import { useThemeContext } from './Theme'
+import ChatSkeleton from './ChatSkeleton'
 
 const Chat = () => {
     const regex = /^(\d{2}:\d{2})(:\d{2})? (AM|PM)$/;
@@ -15,6 +16,7 @@ const Chat = () => {
     const navigate = useNavigate();
     const [message, setMessage] = useState('')
     const [canSend, setCanSend] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [chats, setChat] = useState<message[]>([{
         id: 0,
         sender: 0,
@@ -42,15 +44,13 @@ const Chat = () => {
 
     useEffect(() => {
         if (friend){
-            getChats(user.id, friend.id, setChat)
+            getChats(user.id, friend.id, setChat, setLoading)
         }
     }, [friend, user.id])
 
-    useEffect(() => {
-        ws.onmessage = () => {
-            getChats(user.id, friend.id, setChat)
-        }
-    })
+    ws.onmessage = () => {
+        getChats(user.id, friend.id, setChat)
+    }
 
     return (
         <div className={`${style.container} ${theme === 'dark'? style.dark : style.light}`}>
@@ -62,7 +62,10 @@ const Chat = () => {
                     <i className="fa-solid fa-arrow-left" onClick={() => navigate('/contacts')} />
                     <h1 className={style.friendName}>{friend.first_name} {friend.last_name}</h1>
                 </div>
-                <div className={style.chatContainer} id='chatContainer'>
+                {loading? (
+                    <ChatSkeleton />
+                ) : (
+                    <div className={style.chatContainer} id='chatContainer'>
                     {chats? (
                         chats.map(message => (
                             <Message 
@@ -76,6 +79,7 @@ const Chat = () => {
                         <h1>no messages yet</h1>
                     )}
                 </div>
+                )}
                 <div className={style.inputs}>
                     <textarea id='inputMessages' className={style.input} placeholder='write a message' 
                     onChange={e => {

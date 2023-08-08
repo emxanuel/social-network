@@ -65,6 +65,21 @@ textarea{
     background-color: #0871a8;
 }
 
+.skeleton{
+    height: calc(100vh - 70px - 3rem - 2rem);
+    display: flex;
+    flex-direction: column;
+}
+
+.right, .left{
+    width: 20rem;
+    height: 400px;
+}
+
+.right{
+    align-self: flex-end;
+}
+
 @media (min-width: 801px) {
     .container{
         display: flex;

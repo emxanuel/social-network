@@ -16,10 +16,20 @@ const init = () => {
 }
 
 const getChats = async (sender: number, recipient: number,
-    setChat: React.Dispatch<React.SetStateAction<message[]>>) => {
-        const request = await Axios.get(`/chat/${sender}/${recipient}`);
-        if (request.status === 200){
-            await setChat(request.data)
+    setChat: React.Dispatch<React.SetStateAction<message[]>>,
+    setLoading?: React.Dispatch<React.SetStateAction<boolean>>) => {
+        if (setLoading){
+            await Axios.get(`/chat/${sender}/${recipient}`).then(async (res) => {
+                await setChat(res.data)
+            })
+            .catch(e => {console.log(e)})
+            .finally(() => setLoading(false));
+        }
+        else{
+            await Axios.get(`/chat/${sender}/${recipient}`).then(async (res) => {
+                await setChat(res.data)
+            })
+            .catch(e => console.log(e));
         }
         scrollDown();
 }
@@ -45,13 +55,34 @@ const sendMessage = async (message: string, sender: number, recipient: number,
 }
 
 const getLastMessage = async (sender: number, recipient: number, setLastMessage: 
-    React.Dispatch<React.SetStateAction<message>>) => {
-        
-        const request = await Axios.get(`/chat/${sender}/${recipient}/lastmessage`)
-        if (request.status === 200){
-            setLastMessage(request.data)
-        }else{
-            console.log(request.statusText);
+    React.Dispatch<React.SetStateAction<message>>,
+    setLoading?: React.Dispatch<React.SetStateAction<boolean>>) => {
+        const regex = /^(\d{2}:\d{2})(:\d{2})? (AM|PM)$/;
+        if (setLoading){
+            setLoading(true)
+            await Axios.get(`/chat/${sender}/${recipient}/lastmessage`).then(res => {
+                setLastMessage(res.data)
+            })
+            .catch(() => {
+                setLastMessage({
+                    content: 'send first message',
+                    date_sent: new Date().toLocaleTimeString('en-us').replace(regex, '$1 $3'),
+                    sender: recipient,
+                    recipient: sender,
+                    id: 0
+                })
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+        }
+        else{
+            await Axios.get(`/chat/${sender}/${recipient}/lastmessage`).then(res => {
+                setLastMessage(res.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
         }
 }
 

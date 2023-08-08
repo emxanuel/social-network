@@ -71,11 +71,18 @@ const login = async (user: {email: string, password: string},
     }
 }
 
-const getFriends = async (id: number, setFriends: React.Dispatch<React.SetStateAction<[]>>) => {
-    const request = await Axios.get(`/users/${id}/friends`);
-    if(request.status === 200){
-        setFriends(request.data[0][0])
-    }
+const getFriends = async (id: number, setFriends: React.Dispatch<React.SetStateAction<[]>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>) => {
+        setLoading(true)
+        await Axios.get(`/users/${id}/friends`).then(res => {
+            setFriends(res.data[0][0])
+        })
+        .catch(e => {
+            console.log(e)
+        })
+        .finally(() => {
+            setLoading(false)
+        })
 }
 
 const getFriend = async (id: number, setFriend: React.Dispatch<React.SetStateAction<UserData>>) => {

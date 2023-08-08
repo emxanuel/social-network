@@ -48,6 +48,23 @@
     display: none;
 }
 
+.skeleton{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.skeletonMessage{
+    display: flex;
+    justify-content: space-between;
+}
+
+.loadingContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .dark{
     background-color: black;
 }

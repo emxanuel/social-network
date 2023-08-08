@@ -9,6 +9,7 @@ const Contact = (props: { friend: UserData }) => {
     const regex = /^(\d{2}:\d{2})(:\d{2})? (AM|PM)$/;
     const navigate = useNavigate();
     const user = useUserContext();
+    const [loading, setLoading] = useState(true)
     const [lastMessage, setLastMessage] = useState<message>({
         id: 0,
         sender: 0,
@@ -17,7 +18,7 @@ const Contact = (props: { friend: UserData }) => {
         date_sent: ''
     })
     useEffect(() => {
-        getLastMessage(user.id, props.friend.id, setLastMessage)
+        getLastMessage(user.id, props.friend.id, setLastMessage, setLoading)
     }, [user.id, props.friend])
 
     ws.onmessage = () => {
@@ -29,13 +30,17 @@ const Contact = (props: { friend: UserData }) => {
             <button className={styles.contact}
                 onClick={async () => { await navigate('/chat/' + props.friend.id) }}>
                 <p className={styles.contactName}>{props.friend.first_name} {props.friend.last_name}</p>
-                <p className={styles.lastMessage}>{lastMessage.sender === user.id ? `You: ${lastMessage.content}` : lastMessage.content} <span>{
-                    new Date(lastMessage.date_sent).getDay() === new Date().getDay() ? (
-                        new Date(lastMessage.date_sent).toLocaleTimeString('en-us').replace(regex, '$1 $3')
-                    ) : (
-                        new Date(lastMessage.date_sent).toLocaleDateString()
-                    )
-                }</span></p>
+                {loading? (
+                    <div></div>
+                ) : (
+                    <p className={styles.lastMessage}>{lastMessage.sender === user.id ? `You: ${lastMessage.content}` : lastMessage.content} <span>{
+                        new Date(lastMessage.date_sent).getDay() === new Date().getDay() ? (
+                            new Date(lastMessage.date_sent).toLocaleTimeString('en-us').replace(regex, '$1 $3')
+                        ) : (
+                            new Date(lastMessage.date_sent).toLocaleDateString()
+                        )
+                    }</span></p>
+                )}
             </button>
         </div>
     )
