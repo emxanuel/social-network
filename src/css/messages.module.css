@@ -1,13 +1,30 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition-duration: 500ms;
+}
+
 .message{
     max-width: 50%;
-    box-shadow: 1px 1px 15px black;
     padding: 10px;
     border-radius: 0.5em;
     margin: 1em;
     overflow-wrap: break-word;
     white-space: pre-line;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
-.dark{
-    box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
+.content{
+    font-size: 1.1rem;
+}
+
+.date{
+    font-size: small;
+    opacity: 0.6;
+    align-self: flex-end;
 }

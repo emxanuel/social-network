@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { answerRequest, getRequests } from '../functions/users.functions'
-import { UserData, useUserContext } from './UserContext'
+import { UserData, useUserContext } from '../components/UserContext'
 import style from '../css/requests.module.css'
-import { useThemeContext } from './Theme'
+import { useThemeContext } from '../components/Theme'
 
 const Requests = () => {
     const user = useUserContext();

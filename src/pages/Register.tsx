@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Input from './Input';
+import Input from '../components/Input';
 import { Link } from 'react-router-dom';
 import { register } from '../functions/users.functions';
 import styles from '../css/register.module.css'
-import { useThemeContext } from './Theme';
+import { useThemeContext } from '../components/Theme';
 
 const Register = () => {
     const theme = useThemeContext()

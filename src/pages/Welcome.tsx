@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import styles from '../css/welcome.module.css'
-import { useUserContext } from './UserContext'
-import { useThemeContext } from './Theme';
+import { useUserContext } from '../components/UserContext'
+import { useThemeContext } from '../components/Theme';
 
 const Welcome = () => {
     const user = useUserContext();

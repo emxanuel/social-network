@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Input from './Input'
+import Input from '../components/Input'
 import { login } from '../functions/users.functions';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from '../css/login.module.css'
-import { useThemeContext } from './Theme';
+import { useThemeContext } from '../components/Theme';
 
 const Login = () => {
     const navigate = useNavigate()

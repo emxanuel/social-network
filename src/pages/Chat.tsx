@@ -1,16 +1,15 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getFriend } from '../functions/users.functions'
-import { UserData, useUserContext } from './UserContext'
+import { UserData, useUserContext } from '../components/UserContext'
 import style from '../css/chat.module.css'
 import { getChats, scrollDown, sendMessage, ws } from '../functions/chat.functions'
-import Message, { message } from './Message'
+import Message, { message } from '../components/Message'
 import Contacts from './Contacts'
-import { useThemeContext } from './Theme'
-import ChatSkeleton from './ChatSkeleton'
+import { useThemeContext } from '../components/Theme'
+import ChatSkeleton from '../components/ChatSkeleton'
 
 const Chat = () => {
-    const regex = /^(\d{2}:\d{2})(:\d{2})? (AM|PM)$/;
     const theme = useThemeContext();
     const user = useUserContext();
     const navigate = useNavigate();
@@ -37,13 +36,13 @@ const Chat = () => {
     })
     const params = useParams()
     useEffect(() => {
-        if (params.friend){
+        if (params.friend) {
             getFriend(parseInt(params.friend), setFriend)
         }
     }, [params.friend])
 
     useEffect(() => {
-        if (friend){
+        if (friend) {
             getChats(user.id, friend.id, setChat, setLoading)
         }
     }, [friend, user.id])
@@ -53,7 +52,7 @@ const Chat = () => {
     }
 
     return (
-        <div className={`${style.container} ${theme === 'dark'? style.dark : style.light}`}>
+        <div className={`${style.container} ${theme === 'dark' ? style.dark : style.light}`}>
             <div className={style.contacts}>
                 <Contacts />
             </div>
@@ -62,46 +61,45 @@ const Chat = () => {
                     <i className="fa-solid fa-arrow-left" onClick={() => navigate('/contacts')} />
                     <h1 className={style.friendName}>{friend.first_name} {friend.last_name}</h1>
                 </div>
-                {loading? (
+                {loading ? (
                     <ChatSkeleton />
                 ) : (
                     <div className={style.chatContainer} id='chatContainer'>
-                    {chats? (
-                        chats.map(message => (
-                            <Message 
-                                key={message.id}
-                                class={message.sender === user.id? style.sended : style.received}
-                                content={message.content}
-                                date_sent={`${new Date(message.date_sent).toLocaleTimeString('en-us').replace(regex, '$1 $3')}`}
-                            />
-                        ))
-                    ) : (
-                        <h1>no messages yet</h1>
-                    )}
-                </div>
+                        {chats ? (
+                            chats.map(message => (
+                                <Message
+                                    key={message.id}
+                                    className={message.sender === user.id ? style.sended : style.received}
+                                    info={message}
+                                />
+                            ))
+                        ) : (
+                            <h1>no messages yet</h1>
+                        )}
+                    </div>
                 )}
                 <div className={style.inputs}>
-                    <textarea id='inputMessages' className={style.input} placeholder='write a message' 
-                    onChange={e => {
-                        setMessage(e.currentTarget.value)
-                        if (e.currentTarget.value.trim().length === 0){
-                            setCanSend(false);
-                        }
-                        else{
-                            setCanSend(true)
-                        }
-                    }} />
-                    <input id='sendButton' className={style.button} type="button" value="Send"
-                    onClick={async () => {
-                        if (canSend == true){
-                            if (params.friend){
-                                sendMessage(message, user.id, parseInt(params.friend), setChat)
-                                const inputMessages = document.getElementById('inputMessages') as HTMLInputElement;
-                                inputMessages.value = '';
+                    <textarea id='inputMessages' className={style.input} placeholder='write a message'
+                        onChange={e => {
+                            setMessage(e.currentTarget.value)
+                            if (e.currentTarget.value.trim().length === 0) {
+                                setCanSend(false);
                             }
-                            scrollDown()
-                        }
-                    }} />
+                            else {
+                                setCanSend(true)
+                            }
+                        }} />
+                    <input id='sendButton' className={style.button} type="button" value="Send"
+                        onClick={async () => {
+                            if (canSend == true) {
+                                if (params.friend) {
+                                    sendMessage(message, user.id, parseInt(params.friend), setChat)
+                                    const inputMessages = document.getElementById('inputMessages') as HTMLInputElement;
+                                    inputMessages.value = '';
+                                }
+                                scrollDown()
+                            }
+                        }} />
                 </div>
             </div>
         </div>

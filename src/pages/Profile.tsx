@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { UserData, useUserContext } from './UserContext'
+import { UserData, useUserContext } from '../components/UserContext'
 import { answerRequest, getFriend, sendFriendRequest, verifyFriend, verifyRequest } from '../functions/users.functions';
 import { useParams, Link } from 'react-router-dom';
 import styles from '../css/profile.module.css'
-import { useThemeContext } from './Theme';
+import { useThemeContext } from '../components/Theme';
 
 const Profile = () => {
     const params = useParams()

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { getFriends } from '../functions/users.functions';
-import { UserData, useUserContext } from './UserContext';
+import { UserData, useUserContext } from '../components/UserContext';
 import styles from '../css/contact.module.css'
 import { useNavigate } from 'react-router-dom';
-import { useThemeContext } from './Theme';
-import Contact from './Contact';
-import ContactSkeleton from './ContactSkeleton';
+import { useThemeContext } from '../components/Theme';
+import Contact from '../components/Contact';
+import ContactSkeleton from '../components/ContactSkeleton';
 
 
 const Contacts = (props?: { outChat?: boolean }) => {

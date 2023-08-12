@@ -1,5 +1,8 @@
 import styles from '../css/messages.module.css'
+import { toggleShowElement } from '../functions/elements'
 import { useThemeContext } from './Theme'
+import MessageMenu from './MessageMenu'
+import menuStyles from '../css/messageMenu.module.css'
 
 export type message = {
     id: number,
@@ -9,13 +12,22 @@ export type message = {
     date_sent: string
 }
 
-const Message = (props: {content: string, date_sent: string, class: string}) => {
+interface Props {
+    info: message
+    className: CSSModuleClasses[string]
+}
+
+const Message: React.FC<Props> = ({ className, info }) => {
     const theme = useThemeContext()
+    const date = new Date(info.date_sent).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'})
     return (
-        <div className={`${styles.message} ${props.class} ${theme === 'dark'? styles.dark : styles.light}`}>
-            <p>{props.content}</p>
-            <p>{props.date_sent}</p>
-        </div>
+        <button className={styles.container}>
+            <div className={`${styles.message} ${className} ${theme === 'dark' ? styles.dark : styles.light}`}>
+                <p className={styles.content}>{info.content}</p>
+                <p className={styles.date}>{date}</p>
+            </div>
+            <MessageMenu />
+        </button>
     )
 }
 

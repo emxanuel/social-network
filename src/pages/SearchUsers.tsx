@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import styles from '../css/search.module.css'
-import { UserData, useUserContext } from './UserContext'
+import { UserData, useUserContext } from '../components/UserContext'
 import { searchUsers } from '../functions/users.functions'
 import { useNavigate } from 'react-router-dom'
-import { useThemeContext } from './Theme'
+import { useThemeContext } from '../components/Theme'
 
 const SearchUsers = () => {
     const navigate = useNavigate();

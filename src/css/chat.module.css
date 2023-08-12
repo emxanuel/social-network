@@ -5,6 +5,7 @@
     flex-direction: column;
     row-gap: 2em;
     scroll-snap-type:none;
+    scroll-behavior: smooth;
 }
 
 .chatContainer::-webkit-scrollbar{
@@ -56,7 +57,8 @@ textarea{
 
 
 .received{
-    background-color: rgb(233, 233, 233);
+    background-color: transparent;
+    border: 1px solid #80808025;
     align-self: flex-start;
 }
 
@@ -78,6 +80,11 @@ textarea{
 
 .right{
     align-self: flex-end;
+}
+
+.messageContainer{
+    display: flex;
+    flex-direction: column;
 }
 
 @media (min-width: 801px) {
@@ -112,7 +119,7 @@ textarea{
 
 
 .dark .received{
-    background-color: #111;
+    color: white;
 }
 
 .dark textarea{
@@ -129,4 +136,9 @@ textarea{
 
 .dark .sended{
     background-color: #075580;
+    color: white;
+}
+
+.dark .chatContainer{
+    color: white;
 }

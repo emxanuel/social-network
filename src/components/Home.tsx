@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar'
-import Contacts from './Contacts';
+import Contacts from '../pages/Contacts';
 import { useThemeContext } from './Theme';
 import style from '../css/home.module.css'
 
@@ -10,6 +10,11 @@ interface Props {
 
 const Home: React.FC<Props> = ({ Comp }) => {
     const theme = useThemeContext()
+    
+    if (Notification.permission === 'default'){
+        Notification.requestPermission()
+    }
+    
     return (
     <div className={`${style.container} ${theme === 'dark'? style.dark : style.light}`}>
         <Navbar />
