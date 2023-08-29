@@ -24,6 +24,8 @@ const Contact = (props: { friend: UserData }) => {
         getLastMessage(user.id, props.friend.id, setLastMessage)
     }
 
+    const message = lastMessage.content.length <= 20? lastMessage.content : lastMessage.content.slice(0, 17).concat('...')
+
     return (
         <div key={props.friend.id}>
             <button className={styles.contact}
@@ -32,7 +34,7 @@ const Contact = (props: { friend: UserData }) => {
                 {loading ? (
                     <div></div>
                 ) : (
-                    <p className={styles.lastMessage}>{lastMessage.sender === user.id ? `You: ${lastMessage.content}` : lastMessage.content} <span>{
+                    <p className={styles.lastMessage}>{lastMessage.sender === user.id ? `You: ${message}` : message} <span>{
                         new Date(lastMessage.date_sent).getDay() === new Date().getDay() ? (
                             new Date(lastMessage.date_sent).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
                         ) : (
