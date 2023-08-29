@@ -1,8 +1,6 @@
 import styles from '../css/messages.module.css'
-import { toggleShowElement } from '../functions/elements'
 import { useThemeContext } from './Theme'
 import MessageMenu from './MessageMenu'
-import menuStyles from '../css/messageMenu.module.css'
 
 export type message = {
     id: number,
