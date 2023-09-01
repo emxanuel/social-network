@@ -29,7 +29,7 @@ const Welcome = () => {
         return (
             <div className={`${styles.container} ${theme === 'dark'? styles.dark : styles.light}`}>
                 <div className={styles.text}>
-                    <h1>welcome to sn</h1>
+                    <h1>Welcome to sn</h1>
                     <h2>Contact your friends by the fastest way</h2>
                 </div>
                 <Link to='/register'>create an account</Link>

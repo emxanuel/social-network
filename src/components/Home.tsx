@@ -11,10 +11,6 @@ interface Props {
 const Home: React.FC<Props> = ({ Comp }) => {
     const theme = useThemeContext()
     
-    if (Notification.permission === 'default'){
-        Notification.requestPermission()
-    }
-    
     return (
     <div className={`${style.container} ${theme === 'dark'? style.dark : style.light}`}>
         <Navbar />

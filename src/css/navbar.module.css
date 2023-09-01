@@ -17,6 +17,7 @@
 }
 
 .navbar p{
+    color: white;
     cursor: pointer;
 }
 
@@ -26,7 +27,7 @@
 }
 
 .logo a{
-    color: black;
+    color: white;
 }
 
 .links{
@@ -40,7 +41,7 @@
 }
 
 .links a{
-    color: black;
+    color: white;
     display: none;
 }
 
@@ -67,10 +68,12 @@
 
 #lightIcon{
     display: none;
+    color: white;
 }
 
 #darkIcon{
     display: block;
+    color: white;
 }
 
 .dark{
