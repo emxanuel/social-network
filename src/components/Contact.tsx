@@ -4,6 +4,7 @@ import styles from '../css/contact.module.css'
 import { UserData, useUserContext } from './UserContext';
 import { getLastMessage, ws } from '../functions/chat.functions';
 import { message } from './Message';
+import { sendNotification } from '../functions/notifications';
 
 const Contact = (props: { friend: UserData }) => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Contact = (props: { friend: UserData }) => {
 
     ws.onmessage = () => {
         getLastMessage(user.id, props.friend.id, setLastMessage)
+        sendNotification(`You have a new message from ${props.friend.first_name} ${props.friend.last_name}`)
     }
 
     const message = lastMessage.content.length <= 20? lastMessage.content : lastMessage.content.slice(0, 17).concat('...')

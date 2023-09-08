@@ -16,9 +16,9 @@ const Contacts = (props?: { outChat?: boolean }) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-    getFriends(user.id, setFriends, setLoading)
+        getFriends(user.id, setFriends, setLoading)
     }, [user.id])
-    
+
     if (user.id === 0) {
         navigate('/')
         return <h1></h1>

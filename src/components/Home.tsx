@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Navbar from './Navbar'
 import Contacts from '../pages/Contacts';
 import { useThemeContext } from './Theme';
@@ -9,6 +9,9 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({ Comp }) => {
+    useEffect(() => {
+        Notification.requestPermission()
+    })
     const theme = useThemeContext()
     
     return (
