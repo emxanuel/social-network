@@ -24,7 +24,7 @@ interface ThemeContextType {
 const themeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-    const [state, dispatch] = useReducer(themeReducer, { theme: "light" });
+    const [state, dispatch] = useReducer(themeReducer, { theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'});
 
     const toggleTheme = () => {
         dispatch({ type: Actions.TOGGLE_THEME });
