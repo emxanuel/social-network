@@ -6,7 +6,7 @@ import { useThemeContext } from './Theme'
 const Menu = () => {
     const theme = useThemeContext()
     return (
-        <div id='menu' className={`${style.container} ${theme === 'dark'? style.dark : style.light}`} >
+        <div id='menu' className={`${style.container} ${theme.theme === 'dark'? style.dark : style.light}`} >
             <div className={style.links}>
                 <Link to='/search'>
                     <i className={`fa-solid fa-magnifying-glass ${style.icon}`} />
@@ -17,7 +17,7 @@ const Menu = () => {
                     Friends requests
                 </Link>
                 <Link to={window.location.pathname} className={style.changeButton} onClick={() => {
-                        theme === 'dark' ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark')
+                        theme.theme === 'dark' ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark')
                         window.location.reload();
                     }}>
                         <i id = {style.lightIcon} className={`fa-regular fa-sun ${style.icon}`} />

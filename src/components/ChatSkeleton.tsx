@@ -6,7 +6,7 @@ const ChatSkeleton = () => {
     const theme = useThemeContext()
     return (
         <div>
-            {theme === 'dark' ? (
+            {theme.theme === 'dark' ? (
                 <div className={style.skeleton}>
                     <Skeleton sx={{
                         bgcolor:'rgb(22,22,22)'

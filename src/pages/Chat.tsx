@@ -52,7 +52,7 @@ const Chat = () => {
     }
 
     return (
-        <div className={`${style.container} ${theme === 'dark' ? style.dark : style.light}`}>
+        <div className={`${style.container} ${theme.theme === 'dark' ? style.dark : style.light}`}>
             <div className={style.contacts}>
                 <Contacts />
             </div>

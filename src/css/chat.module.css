@@ -3,7 +3,7 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    row-gap: 2em;
+    row-gap: 2rem;
     scroll-snap-type:none;
     scroll-behavior: smooth;
 }
@@ -17,7 +17,7 @@
     height: 2rem;
     font-size: medium;
 }
-
+    
 .input::-webkit-scrollbar{
     color: transparent;
 }
@@ -32,7 +32,6 @@
 
 #chatHeader{
     position: relative;
-    border-bottom: 3px solid #000000ab;
     height: 3rem;
 }
 
@@ -95,7 +94,7 @@ textarea{
     }
     .secondDiv{
         width: 68.5vw;
-        border-left: 2px solid black;
+        border-left: 1px solid rgba(0, 0, 0, 0.178);
         border-left-style: outset;
     }
     .contacts{
@@ -106,10 +105,15 @@ textarea{
         font-size: 2em;
     }
     #chatHeader{
-        border-bottom: 1px solid black;
+        background-color: #ebebeb77;
+        border: 1px solid rgba(0, 0, 0, 0.178);
     }
     #chatHeader i{
         display: none;
+    }
+    .dark #chatHeader{
+        background-color: #1f1f1f1a;
+        border: 1px solid rgba(37, 37, 37, 0.178);
     }
 }
 

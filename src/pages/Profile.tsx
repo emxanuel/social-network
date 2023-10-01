@@ -44,7 +44,7 @@ const Profile = () => {
     }, [user.id, friend.id])
 
     return (
-        <div className={`${styles.container} ${theme === 'dark'? styles.dark : styles.light}`}>
+        <div className={`${styles.container} ${theme.theme === 'dark'? styles.dark : styles.light}`}>
             {friend.id !== 0? (
                 <div>
                     <h1>{friend.first_name} {friend.last_name}</h1>

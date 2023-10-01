@@ -15,7 +15,7 @@ const Home: React.FC<Props> = ({ Comp }) => {
     const theme = useThemeContext()
     
     return (
-    <div className={`${style.container} ${theme === 'dark'? style.dark : style.light}`}>
+    <div className={`${style.container} ${theme.theme === 'dark'? style.dark : style.light}`}>
         <Navbar />
         {Comp === Contacts? (
             <Contacts outChat/>

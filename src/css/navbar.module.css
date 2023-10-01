@@ -51,6 +51,7 @@
 }
 
 .icon{
+    color: white;
     cursor: pointer;
 }
 
@@ -59,7 +60,7 @@
 }
 
 .icon:hover{
-    color: white;
+    color: black;
 }
 
 .changeButton{

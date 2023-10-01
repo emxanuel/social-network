@@ -1,25 +1,59 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
-interface props {
-    children: JSX.Element
+interface ThemeProviderProps {
+    children: JSX.Element;
 }
 
-const themeContext = createContext('light')
+enum Actions {
+    TOGGLE_THEME = "TOGGLE_THEME",
+}
 
-const ThemeProvider: React.FC<props> = ({children}) => {
-    let storedTheme = localStorage.getItem('theme')
-    let theme = storedTheme !== null? 
-        useState(storedTheme) : useState('light')
+interface ThemeActions {
+    type: Actions;
+}
+
+interface ThemeState {
+    theme: string,
+}
+
+interface ThemeContextType {
+    theme: string;
+    toggleTheme: () => void;
+}
+
+const themeContext = createContext<ThemeContextType | undefined>(undefined);
+
+const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+    const [state, dispatch] = useReducer(themeReducer, { theme: "light" });
+
+    const toggleTheme = () => {
+        dispatch({ type: Actions.TOGGLE_THEME });
+    };
 
     return (
-        <themeContext.Provider value={theme[0]}>
+        <themeContext.Provider value={{ theme: state.theme, toggleTheme }}>
             {children}
         </themeContext.Provider>
-    )
-}
+    );
+};
+
+const themeReducer = (state: ThemeState, action: ThemeActions) => {
+    switch (action.type) {
+        case Actions.TOGGLE_THEME:
+            return {
+                theme: state.theme === "light" ? "dark" : "light",
+            };
+        default:
+            return state;
+    }
+};
 
 const useThemeContext = () => {
-    return useContext(themeContext)
-}
+    const context = useContext(themeContext);
+    if (context === undefined) {
+        throw new Error("useThemeContext debe usarse dentro de un ThemeProvider");
+    }
+    return context;
+};
 
-export {themeContext, ThemeProvider, useThemeContext}
+export { ThemeProvider, useThemeContext };

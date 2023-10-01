@@ -26,7 +26,7 @@ const Register = () => {
     };
     
     return (
-    <div className={`${styles.container} ${theme === 'dark'? styles.dark : styles.light}`}>
+    <div className={`${styles.container} ${theme.theme === 'dark'? styles.dark : styles.light}`}>
         
         <form className={styles.form}>
             <h1>Register</h1>

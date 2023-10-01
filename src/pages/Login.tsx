@@ -23,7 +23,7 @@ const Login = () => {
     user
 
     return (
-        <div className={`${styles.container} ${theme === 'dark'? styles.dark : styles.light}`} >
+        <div className={`${styles.container} ${theme.theme === 'dark'? styles.dark : styles.light}`} >
             <form action="" className={styles.form}>
                 <h1>Log in</h1>
                 <h2>Welcome again</h2>

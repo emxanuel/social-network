@@ -22,7 +22,7 @@ const SearchUsers = () => {
     }])
 
     return (
-        <div className={`${styles.container} ${theme === 'dark'? styles.dark : styles.light}`}>
+        <div className={`${styles.container} ${theme.theme === 'dark'? styles.dark : styles.light}`}>
             <div className={styles.header}>
                 <i className={`fa-solid fa-arrow-left ${styles.arrowLeft} `} 
                 onClick={() => window.history.back()} />

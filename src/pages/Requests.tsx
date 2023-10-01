@@ -22,7 +22,7 @@ const Requests = () => {
         getRequests(user.id, setRequests)
     }, [user.id])
     return (
-        <div className={`${style.container} ${theme === 'dark'? style.dark : style.light}`}>
+        <div className={`${style.container} ${theme.theme === 'dark'? style.dark : style.light}`}>
             <h1 className={style.title}>friends requests</h1>
             {requests[0].id !== 0? (
                 requests.map((request => (

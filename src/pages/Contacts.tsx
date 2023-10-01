@@ -24,7 +24,7 @@ const Contacts = (props?: { outChat?: boolean }) => {
         return <h1></h1>
     }
     return (
-        <div className={`${styles.container} ${theme === 'dark' ? styles.dark : styles.light}`}>
+        <div className={`${styles.container} ${theme.theme === 'dark' ? styles.dark : styles.light}`}>
             {loading ? (
                 <div className={styles.contactsContainer}>
                     <h1>Contacts</h1>

@@ -20,7 +20,7 @@ const Message: React.FC<Props> = ({ className, info }) => {
     const date = new Date(info.date_sent).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'})
     return (
         <button className={styles.container}>
-            <div className={`${styles.message} ${className} ${theme === 'dark' ? styles.dark : styles.light}`}>
+            <div className={`${styles.message} ${className} ${theme.theme === 'dark' ? styles.dark : styles.light}`}>
                 <p className={styles.content}>{info.content}</p>
                 <p className={styles.date}>{date}</p>
             </div>

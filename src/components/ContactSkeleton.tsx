@@ -6,7 +6,7 @@ const ContactSkeleton = () => {
     const theme = useThemeContext()
     return (
         <div>
-            {theme === 'dark' ? (
+            {theme.theme === 'dark' ? (
                 <div className={`${styles.skeleton}`}>
                     <Skeleton variant='rectangular' height={25} sx={{
                         bgcolor:'rgb(22,22,22)'
