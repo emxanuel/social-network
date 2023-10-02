@@ -1,0 +1,70 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-self: center;
+    width: 10rem;
+    border: 1px solid rgb(184, 184, 184);
+    animation: init;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+    border-radius: 20px;
+    padding: 0.4rem;
+    
+}
+
+@keyframes init {
+    from{
+        scale: 0;
+        opacity: 0;
+    }
+    to{
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+.container button{
+    color: black;
+    border: none;
+    background-color: transparent;
+    height: 2rem;
+}
+
+.container button:hover{
+    cursor: pointer;
+    background-color: rgba(196, 196, 196, 0.651);
+}
+
+.hidden{
+    animation: exit;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes exit {
+    from{
+        scale: 1;
+        opacity: 1;
+    }
+    to{
+        scale: 0;
+        opacity: 0;
+    }
+}
+
+.notShow{
+    display: none;
+}
+
+.dark.container{
+    border-color: white;
+}
+
+.dark.container button{
+    color: white;
+}
+
+.dark.container button:hover{
+    background-color: rgba(82, 81, 81, 0.562);
+}

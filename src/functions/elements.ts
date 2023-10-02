@@ -9,4 +9,6 @@ const toggleShowElement = (element: HTMLElement, styles: CSSModuleClasses) => {
     }
 };
 
+document.oncontextmenu = () => false
+
 export { toggleShowElement };

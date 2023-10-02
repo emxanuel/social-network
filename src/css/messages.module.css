@@ -5,6 +5,7 @@
     border: none;
     cursor: pointer;
     transition-duration: 500ms;
+    position: relative;
 }
 
 .message{

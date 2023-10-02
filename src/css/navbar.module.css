@@ -16,6 +16,10 @@
     grid-column-start: span 2;
 }
 
+.navbar p{
+    color: white;
+}
+
 .navbar a{
     color: white;
     cursor: pointer;
@@ -106,6 +110,8 @@
 .dark #lightIcon{
     display: block;
 }
+
+
 
 @media (min-width: 801px){
     .navbar{
