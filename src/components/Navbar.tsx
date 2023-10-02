@@ -1,5 +1,4 @@
 import { useUserContext } from './UserContext'
-import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import styles from '../css/navbar.module.css'
 import menuStyles from '../css/menu.module.css'
@@ -10,7 +9,6 @@ import { useThemeContext } from './Theme'
 const Navbar = () => {
     const user = useUserContext()
     const { theme, toggleTheme } = useThemeContext()
-    const navigate = useNavigate();
     const [toggle, setToggle] = useState(true);
 
     const toggleNavbar = () => {
@@ -60,12 +58,8 @@ const Navbar = () => {
         return (
             <nav className={`${styles.navbar} ${theme === 'dark' ? styles.dark : styles.light}`}>
                 <h1 className={styles.logo}><Link to='/'>SN</Link></h1>
-                <p onClick={() => {
-                    navigate('/login')
-                }}>Login</p>
-                <p onClick={() => {
-                    navigate('/register')
-                }}>sign in</p>
+                <Link to={'/login'}>Login</Link>
+                <Link to={'/register'}>sign in</Link>
             </nav>
         )
     }

@@ -51,7 +51,7 @@ const themeReducer = (state: ThemeState, action: ThemeActions) => {
 const useThemeContext = () => {
     const context = useContext(themeContext);
     if (context === undefined) {
-        throw new Error("useThemeContext debe usarse dentro de un ThemeProvider");
+        throw new Error("useThemeContext must be used into a ThemeProvider");
     }
     return context;
 };

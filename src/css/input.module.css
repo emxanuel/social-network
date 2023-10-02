@@ -10,6 +10,6 @@
     justify-self: start
 }
 
-.container input{
+.container input, .container select{
     width: 12em;
 }

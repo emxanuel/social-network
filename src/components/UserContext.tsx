@@ -14,6 +14,8 @@ export type UserData = {
     gender: string,
     profile_picture: string,
     is_active: boolean,
+    country: string,
+    interests: string[]
 };
 
 const userContext = createContext<UserData>({
@@ -25,7 +27,9 @@ const userContext = createContext<UserData>({
     birthdate: "",
     gender: "",
     profile_picture: "",
-    is_active: false
+    is_active: false,
+    country: '',
+    interests: []
 });
 
 const UserProvider: React.FC<Props> = ({ children }) => {

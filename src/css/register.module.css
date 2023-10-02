@@ -7,13 +7,14 @@
     justify-content: center;
     row-gap: 20px;
     border-radius: 20px;
+    width: max-content;
 }
 
 .container{
     display: grid;
     place-items: center;
     color: white;
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
 }
 
 .form button{
@@ -47,4 +48,8 @@
 
 .dark .form button{
     background-color: rgb(68, 68, 68);
+}
+
+.dark .container {
+    background-color: black ;
 }

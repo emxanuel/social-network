@@ -20,7 +20,9 @@ const Profile = () => {
         birthdate: "",
         gender: "",
         profile_picture: "",
-        is_active: false
+        is_active: false,
+        country: '',
+        interests: []
     });
 
     useEffect(() => {

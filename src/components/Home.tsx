@@ -7,7 +7,7 @@ import style from '../css/home.module.css'
 interface Props {
     Comp: React.ComponentType;
 }
-
+    
 const Home: React.FC<Props> = ({ Comp }) => {
     useEffect(() => {
         Notification.requestPermission()

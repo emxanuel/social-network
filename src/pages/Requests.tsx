@@ -17,6 +17,8 @@ const Requests = () => {
         gender: "",
         profile_picture: "",
         is_active: false,
+        country: '',
+        interests: []
     }])
     useEffect(() => {
         getRequests(user.id, setRequests)

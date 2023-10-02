@@ -16,12 +16,12 @@
     grid-column-start: span 2;
 }
 
-.navbar p{
+.navbar a{
     color: white;
     cursor: pointer;
 }
 
-.navbar p:hover{
+.navbar a:hover{
     color: white;
     transition-duration: 500ms;
 }

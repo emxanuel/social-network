@@ -18,7 +18,9 @@ const SearchUsers = () => {
         birthdate: "",
         gender: "",
         profile_picture: "",
-        is_active: false
+        is_active: false,
+        country: '',
+        interests: []
     }])
 
     return (

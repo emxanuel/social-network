@@ -33,6 +33,8 @@ const Chat = () => {
         gender: "",
         profile_picture: "",
         is_active: false,
+        country: '',
+        interests: []
     })
     const params = useParams()
     useEffect(() => {
