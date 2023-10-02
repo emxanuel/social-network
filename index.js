@@ -7,7 +7,6 @@ const bodyParser = require('body-parser')
 const webSocket = require('ws');
 const http = require('http');
 const server = http.createServer(app)
-const ServerlessHttp = require('serverless-http');
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', process.env.site);

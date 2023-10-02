@@ -16,14 +16,16 @@ const dbService = () => {
         storyViews: 'story_views',
         message: 'messages',
         friends: 'friends',
-        friendsRequests: 'friends_requests'
+        friendsRequests: 'friends_requests',
+        userInterests: 'users_interests',
+        interests: 'interests'
     }
 
     const users = {
         getUsers: () => {
             return knex(tables.users).select();
         },
-        addUser: ({firstName, lastName, email, password, birthdate, gender, profilePicture}) => {
+        addUser: ({firstName, lastName, email, password, birthdate, gender, profilePicture, country}) => {
             return knex(tables.users).insert({
                 first_name: firstName,
                 last_name: lastName,
@@ -31,7 +33,8 @@ const dbService = () => {
                 password: password,
                 birthdate: birthdate,
                 gender: gender,
-                profile_picture: profilePicture
+                profile_picture: profilePicture,
+                country: country
             });
         },
         deleteUser: (id) => {
@@ -48,7 +51,7 @@ const dbService = () => {
                 password: password
             }).count().select('id');
         },
-        updateUser: (id, {firstName, lastName, email, password, birthdate, gender, profilePicture}) => {
+        updateUser: (id, {firstName, lastName, email, password, birthdate, gender, profilePicture, country}) => {
             return knex(tables.users).where({id: id}).update({
                 first_name: firstName,
                 last_name: lastName,
@@ -56,8 +59,12 @@ const dbService = () => {
                 password: password,
                 birthdate: birthdate,
                 gender: gender,
-                profile_picture: profilePicture
+                profile_picture: profilePicture,
+                country: country
             })
+        },
+        getUserId: (email) => {
+            return knex(tables.users).where({email: email}).select()
         },
         getFriends: (id) => {
             return knex.raw('call sp_get_friends(?)', [id])
@@ -124,9 +131,24 @@ const dbService = () => {
         }
     }
 
+    const interests = {
+        addInterests: (interests, user) => {
+            let query = `insert into ${tables.userInterests} (user_id, interest) values `
+            interests.map((i, index) => index + 1 < interests.length? query = query.concat(`(${user}, ${i}), `): query = query.concat(`(${user}, ${i}) `))
+            return knex.raw(query)
+        },
+        getUserInterests: (user) => {
+            return knex.raw('call sp_get_interests(?)', [user])
+        },
+        getInterests: () => {
+            return knex(tables.interests).select()
+        }
+    }
+
     return{
         users,
-        messages
+        messages,
+        interests
     }
 }
 

@@ -1,7 +1,7 @@
 const moment = require('moment')
 module.exports = (app, dbService) => {
     app.get('/api', (req, res) => {
-        res.send('my social network api')
+        res.send('My social network api')
     })
 
     //users routes
@@ -17,6 +17,13 @@ module.exports = (app, dbService) => {
             res.json(result);
         }).catch(e => {
             res.status(500).json(e);
+        })
+    })
+    app.get('/api/users/email/:email', (req, res) => {
+        dbService.users.getUserId(req.params.email).then(result => {
+            res.json(result[0].id)
+        }).catch(e => {
+            res.status(500).json(e)
         })
     })
     app.post('/api/users', (req, res) => {
@@ -112,7 +119,6 @@ module.exports = (app, dbService) => {
         const content = req.body.content;
         let dateSent = req.body.dateSent;
         const timezone = req.body.timezone
-        console.log(moment(dateSent, 'M/D/YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm:ss'), dateSent)
         dateSent = moment(dateSent, 'M/D/YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm:ss')
         
         dbService.messages.addMessage({
@@ -135,6 +141,35 @@ module.exports = (app, dbService) => {
             res.json(result);
         }).catch(e => {
             res.status(500).json(e);
+        })
+    })
+
+    //interests routes
+    app.get('/api/interests', (req, res) => {
+        dbService.interests.getInterests().then(result => {
+            res.json(result)
+        }).catch(e => {
+            res.status(500).json(e)
+        })
+    })
+    app.get('/api/interests/:user', (req, res) => {
+        const user = req.params.user
+        dbService.interests.getUserInterests(user).then(result => {
+            res.json(result[0][0])
+        }).catch(e => {
+            res.status(500).json(e)
+        })
+    })
+    app.post('/api/interests/:user', (req, res) => {
+        const user = req.params.user
+        const body = req.body
+        dbService.interests.addInterests(body.interests, user).then(() => {
+            res.json({
+                response: 'interests added',
+                ...body
+            })
+        }).catch(e => {
+            res.status(500).json(e)
         })
     })
 }
