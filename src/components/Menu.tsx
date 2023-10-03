@@ -6,7 +6,7 @@ import { useThemeContext } from './Theme'
 const Menu = () => {
     const {theme, toggleTheme} = useThemeContext()
     return (
-        <div id='menu' className={`${style.container} ${theme.theme === 'dark'? style.dark : style.light}`} >
+        <div id='menu' className={`${style.container} ${theme === 'dark'? style.dark : style.light}`} >
             <div className={style.links}>
                 <Link to='/search'>
                     <i className={`fa-solid fa-magnifying-glass ${style.icon}`} />
