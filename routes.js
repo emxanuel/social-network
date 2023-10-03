@@ -14,7 +14,7 @@ module.exports = (app, dbService) => {
     })
     app.get('/api/users/:id', (req, res) => {
         dbService.users.getSingleUser(req.params.id).then(result => {
-            res.json(result);
+            res.json(result[0]);
         }).catch(e => {
             res.status(500).json(e);
         })
@@ -37,7 +37,7 @@ module.exports = (app, dbService) => {
     app.post('/api/login', (req, res) => {
         const user = req.body;
         dbService.users.login(user).then(result => {
-            res.json(result);
+            res.json(result[0]["count(*)"]);
         }).catch(e => {
             res.status(500).json(e);
         })
@@ -45,7 +45,7 @@ module.exports = (app, dbService) => {
     app.get('/api/users/:id/friends', (req, res) => {
         const id = req.params.id;
         dbService.users.getFriends(id).then(result => {
-            res.json(result);
+            res.json(result[0][0]);
         }).catch(e => {
             res.status(500).json(e);
         })
@@ -63,7 +63,7 @@ module.exports = (app, dbService) => {
         const user1 = req.params.user1;
         const user2 = req.params.user2;
         dbService.users.verifyFriend(user1, user2).then(result => {
-            res.json(result);
+            res.json(result[0]["count(*)"]);
         }).catch(e => {
             res.status(500).json(e)
         })
@@ -71,7 +71,7 @@ module.exports = (app, dbService) => {
     app.get('/api/users/:id/requests', (req, res) => {
         const id = req.params.id;
         dbService.users.getRequests(id).then(result => {
-            res.json(result);
+            res.json(result[0][0]);
         }).catch(e => {
             res.status(500).json(e)
         })
@@ -88,7 +88,7 @@ module.exports = (app, dbService) => {
         const user1 = req.params.user1;
         const user2 = req.params.user2;
         dbService.users.verifyRequest(user1, user2).then((result) => {
-            res.json(result);
+            res.json(result[0][0][0]);
         }).catch(e => {
             res.status(500).json(e);
         })
