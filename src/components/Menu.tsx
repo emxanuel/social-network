@@ -4,7 +4,7 @@ import style from '../css/menu.module.css'
 import { useThemeContext } from './Theme'
 
 const Menu = () => {
-    const theme = useThemeContext()
+    const {theme, toggleTheme} = useThemeContext()
     return (
         <div id='menu' className={`${style.container} ${theme.theme === 'dark'? style.dark : style.light}`} >
             <div className={style.links}>
@@ -17,8 +17,9 @@ const Menu = () => {
                     Friends requests
                 </Link>
                 <Link to={window.location.pathname} className={style.changeButton} onClick={() => {
-                        theme.theme === 'dark' ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark')
-                        window.location.reload();
+                        setTimeout(() => {
+                            toggleTheme()
+                        }, 0);
                     }}>
                         <i id = {style.lightIcon} className={`fa-regular fa-sun ${style.icon}`} />
                         <i id = {style.darkIcon} className={`fa-regular fa-moon`}/>

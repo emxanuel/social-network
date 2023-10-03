@@ -17,7 +17,6 @@ const register = async (
     setMessage: React.Dispatch<React.SetStateAction<{ text: string }>>
 ) => {
     setMessage({ text: "registering..." });
-    console.log(user.interests)
 
     const emailRegex = /^[\w.-]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+$/;
     let text: string;
@@ -56,8 +55,8 @@ const getUserById = async (
 ) => {
     const request = await Axios.get(`/users/${id}`);
     if (request.status === 200) {
-        setUser(request.data[0]);
-        localStorage.setItem("User", JSON.stringify(request.data[0]));
+        setUser(request.data);
+        localStorage.setItem("User", JSON.stringify(request.data));
     }
 };
 
@@ -71,9 +70,10 @@ const login = async (
         const request = await Axios.post("/login", user);
         setMessage("logging in...");
         if (request.status === 200) {
-            if (request.data[0]["count(*)"] === 1) {
-                setId(request.data[0].id);
-                await getUserById(request.data[0].id, setUser);
+            console.log(request.data)
+            if (request.data === 1) {
+                setId(request.data);
+                await getUserById(request.data, setUser);
                 return true;
             } else {
                 setMessage("email or password incorrect");
@@ -95,7 +95,7 @@ const getFriends = async (
     setLoading(true);
     await Axios.get(`/users/${id}/friends`)
         .then((res) => {
-            setFriends(res.data[0][0]);
+            setFriends(res.data);
         })
         .catch((e) => {
             console.log(e);
@@ -111,7 +111,7 @@ const getFriend = async (
 ) => {
     const request = await Axios.get(`/users/${id}`);
     if (request.status === 200) {
-        setFriend(request.data[0]);
+        setFriend(request.data);
     }
 };
 
@@ -133,7 +133,7 @@ const verifyFriend = async (user1: number, user2: number) => {
     let verify = false;
     const request = await Axios.get(`/users/verify/${user1}/${user2}`);
     if (request.status === 200) {
-        if (request.data[0]["count(*)"] === 1) {
+        if (request.data === 1) {
             verify = true;
         }
     }
@@ -161,8 +161,8 @@ const verifyRequest = async (user1: number, user2: number) => {
     const request = await Axios.get(`/users/request/${user1}/${user2}`);
 
     if (request.status === 200) {
-        request.data[0][0][0].state !== null
-            ? (state = request.data[0][0][0].state)
+        request.data.state !== null
+            ? (state = request.data.state)
             : (state = -1);
     }
 
@@ -209,7 +209,7 @@ const getRequests = async (
 ) => {
     const request = await Axios.get(`/users/${id}/requests`);
     if (request.status === 200) {
-        if (request.data[0][0].length == 0) {
+        if (request.data.length == 0) {
             setRequests([
                 {
                     id: 0,
@@ -226,7 +226,7 @@ const getRequests = async (
                 },
             ]);
         } else {
-            setRequests(request.data[0][0]);
+            setRequests(request.data);
         }
     }
 };

@@ -59,7 +59,7 @@ const Navbar = () => {
             <nav className={`${styles.navbar} ${theme === 'dark' ? styles.dark : styles.light}`}>
                 <h1 className={styles.logo}><Link to='/'>SN</Link></h1>
                 <Link to={'/login'}>Login</Link>
-                <Link to={'/register'}>sign in</Link>
+                <Link to={'/register'}>Sign up</Link>
             </nav>
         )
     }
