@@ -1,4 +1,4 @@
-import { Axios } from "../backend";
+import { Axios, server } from "../backend";
 import React, { SetStateAction } from "react";
 import { UserData } from "../components/UserContext";
 
@@ -239,7 +239,7 @@ const getProfilePhoto = (
 ) => {
     console.log(path)
     if (path === null){
-        setProfilePricture('http://localhost/api/users/picture/no-picture')
+        setProfilePricture(`${server}/users/picture/no-picture`)
     }
     else {
         console.log('working')
