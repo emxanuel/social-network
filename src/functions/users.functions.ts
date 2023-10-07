@@ -107,9 +107,11 @@ const getFriends = async (
 
 const getFriend = async (
     id: number,
-    setFriend: React.Dispatch<React.SetStateAction<UserData>>
+    setFriend: React.Dispatch<React.SetStateAction<UserData>>,
+    setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
     const request = await Axios.get(`/users/${id}`);
+    if(setLoading) setLoading(false)
     if (request.status === 200) {
         setFriend(request.data);
     }
@@ -231,6 +233,19 @@ const getRequests = async (
     }
 };
 
+const getProfilePhoto = (
+    path: string,
+    setProfilePricture: React.Dispatch<React.SetStateAction<string>>
+) => {
+    console.log(path)
+    if (path === null){
+        setProfilePricture('http://localhost/api/users/picture/no-picture')
+    }
+    else {
+        console.log('working')
+    }
+}
+
 export {
     register,
     login,
@@ -242,4 +257,6 @@ export {
     verifyRequest,
     answerRequest,
     getRequests,
+    getProfilePhoto
 };
+

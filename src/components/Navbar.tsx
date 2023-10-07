@@ -40,7 +40,7 @@ const Navbar = () => {
                         localStorage.removeItem('User')
                         window.location.reload()
                     }}>Logout</Link>
-                    <p>{user.first_name}</p>
+                    <Link to={`/profile/${user.id}`}>{user.first_name}</Link>
                     {/* <img src={user.profilePicture} alt="" /> */}
                     <i className={`${styles.icon} ${styles.bars} fa-solid fa-bars`} onClick={async () => {
                         await setToggle(!toggle)
