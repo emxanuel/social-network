@@ -27,6 +27,7 @@ const Navbar = () => {
             <nav className={`${styles.navbar} ${theme === 'dark' ? styles.dark : styles.light}`}>
                 <div className={styles.iconContainer}>
                     <h1 className={styles.logo}><Link to='/'>SN</Link></h1>
+                    
                 </div>
                 <div className={styles.links}>
                     <Link to='/search'>
