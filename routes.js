@@ -101,6 +101,9 @@ module.exports = (app, dbService) => {
             res.status(500).json(e)
         })
     })
+    app.get('/api/users/picture/no-picture', (req, res) => {
+        res.sendFile(__dirname + '/media/default/no-profile-photo.jpg')
+    })
 
     //chat routes
     app.get('/api/chat/:id/:friend', (req, res) => {
