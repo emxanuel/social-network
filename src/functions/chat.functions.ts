@@ -61,7 +61,9 @@ const getLastMessage = async (sender: number, recipient: number, setLastMessage:
         if (setLoading){
             setLoading(true)
             await Axios.get(`/chat/${sender}/${recipient}/lastmessage`).then(res => {
-                setLastMessage(res.data)
+                if(res.data[0].id){
+                    setLastMessage(res.data)
+                }
             })
             .catch(() => {
                 setLastMessage({
