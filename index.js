@@ -29,10 +29,6 @@ wss.on('connection', (ws) => {
     })
 })
 
-// app.listen(port, () => {
-//     console.log("app listen in port: " + port)
-// })
-
 server.listen(process.env.PORT, () => {
     console.log('app listen in port: ' + process.env.PORT)
 })
