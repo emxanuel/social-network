@@ -41,15 +41,13 @@ const Contact = (props: { friend: UserData }) => {
                     {loading ? (
                         <div></div>
                     ) : (
-                        <p className={styles.lastMessage}>{lastMessage?(lastMessage.sender === user.id ? `You: ${message}` : message} <span>{
+                        <p className={styles.lastMessage}>{lastMessage ? (lastMessage.sender === user.id ? `You: ${message}` : message) : ''} <span>{lastMessage? (
                             new Date(lastMessage.date_sent).getDay() === new Date().getDay() ? (
                                 new Date(lastMessage.date_sent).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
                             ) : (
                                 new Date(lastMessage.date_sent).toLocaleDateString()
-                            ) : (
-                                <div></div>
-                            ))
-                        }</span></p>
+                            ) 
+                        ) : ''}</span></p>
                     )}
                 </div>
             </button>
