@@ -71,9 +71,9 @@ const login = async (
         setMessage("logging in...");
         if (request.status === 200) {
             console.log(request.data)
-            if (request.data === 1) {
-                setId(request.data);
-                await getUserById(request.data, setUser);
+            if (request.data["count(*)"] === 1) {
+                setId(request.data.id);
+                await getUserById(request.data.id, setUser);
                 return true;
             } else {
                 setMessage("email or password incorrect");
