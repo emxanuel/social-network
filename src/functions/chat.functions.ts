@@ -70,7 +70,6 @@ const getLastMessage = async (
     setLastMessage: React.Dispatch<React.SetStateAction<message>>,
     setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-    const regex = /^(\d{2}:\d{2})(:\d{2})? (AM|PM)$/;
     if (setLoading) {
         setLoading(true);
         await Axios.get(`/chat/${sender}/${recipient}/lastmessage`)
