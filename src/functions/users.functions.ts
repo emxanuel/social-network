@@ -180,7 +180,7 @@ const answerRequest = async (
     setRequests?: React.Dispatch<SetStateAction<UserData[]>>
 ) => {
     const request = await Axios.post(
-        `/users/request/${requester}/${requester}`,
+        `/users/request/${requester}/${requested}`,
         {
             requester: requester,
             requested: requested,
@@ -202,6 +202,9 @@ const answerRequest = async (
                 getRequests(requested, setRequests);
             }
         }
+    }
+    else{
+        console.log('no')
     }
 };
 
