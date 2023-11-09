@@ -13,7 +13,7 @@
     background-color: rgb(240, 240, 240);
 }
 
-.contactName{
+.contactName{   
     font-weight: bolder;
     font-size: large;
 }
@@ -116,7 +116,7 @@
     }
     .contactsContainer{
         width: 30vw;
-        height: calc(100% - 60px);
+        height: 45vw;
         overflow-y: scroll;
     }
     .dark .chatSpace p{
