@@ -116,6 +116,8 @@
     }
     .contactsContainer{
         width: 30vw;
+        height: calc(100% - 60px);
+        overflow-y: scroll;
     }
     .dark .chatSpace p{
         color: white;

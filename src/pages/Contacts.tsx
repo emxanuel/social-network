@@ -39,7 +39,7 @@ const Contacts = (props?: { outChat?: boolean }) => {
                     </div>
                 </div>
             ) : (
-                <div className={`${styles.contactsContainer} h-full overflow-y-scroll`}>
+                <div className={`${styles.contactsContainer}`}>
                     <h1>Contacts</h1>
                     {friends !== null ? (
                         friends.map((friend: UserData) => {
