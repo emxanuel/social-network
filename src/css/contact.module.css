@@ -119,6 +119,9 @@
         height: 45vw;
         overflow-y: scroll;
     }
+    .contactsContainer::-webkit-scrollbar{
+        width: 0.1px;
+    }
     .dark .chatSpace p{
         color: white;
     }
