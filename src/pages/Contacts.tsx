@@ -24,7 +24,7 @@ const Contacts = (props?: { outChat?: boolean }) => {
         return <h1></h1>
     }
     return (
-        <div className={`${styles.container} ${theme.theme === 'dark' ? styles.dark : styles.light} h-full overflow-y-scroll`}>
+        <div className={`${styles.container} ${theme.theme === 'dark' ? styles.dark : styles.light}`}>
             {loading ? (
                 <div className={styles.contactsContainer}>
                     <h1>Contacts</h1>
@@ -39,7 +39,7 @@ const Contacts = (props?: { outChat?: boolean }) => {
                     </div>
                 </div>
             ) : (
-                <div className={styles.contactsContainer}>
+                <div className={`${styles.contactsContainer} h-full overflow-y-scroll`}>
                     <h1>Contacts</h1>
                     {friends !== null ? (
                         friends.map((friend: UserData) => {
